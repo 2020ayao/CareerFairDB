@@ -71,7 +71,11 @@ CREATE TABLE IF NOT EXISTS Hires (
    applicantID int NOT NULL, 
    FOREIGN KEY (companyID) REFERENCES Company(companyID),
    FOREIGN KEY (applicantID) REFERENCES Applicant(applicantID)
+
+
    );
+
+   -- CONSTRAINT check_applicant_exists CHECK (Applies.applicantID = Hires.applicantID AND Applies.jobID = Hires.jobID)
 
 
 CREATE TABLE IF NOT EXISTS Reaches_out (
