@@ -14,7 +14,7 @@
 	?>
 	<body>
 		<h2>Home Page</h2>
-		<p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
+		<p>Hello <?php echo "$user"?>!</p> <!--Displays user's name-->
 		<a href="logout.php">Click here to logout</a><br/><br/>
 		<a href="home.php">Return to Home page</a>
 		<h2 align="center">Currently Selected</h2>
@@ -40,13 +40,13 @@
 					{
 						while($row = mysql_fetch_array($query))
 						{
-							Print "<tr>";
-								Print '<td align="center">'. $row['id'] . "</td>";
-								Print '<td align="center">'. $row['details'] . "</td>";
-								Print '<td align="center">'. $row['date_posted']. " - ". $row['time_posted']."</td>";
-								Print '<td align="center">'. $row['date_edited']. " - ". $row['time_edited']. "</td>";
-								Print '<td align="center">'. $row['public']. "</td>";
-							Print "</tr>";
+							echo "<tr>";
+								echo '<td align="center">'. $row['id'] . "</td>";
+								echo '<td align="center">'. $row['details'] . "</td>";
+								echo '<td align="center">'. $row['date_posted']. " - ". $row['time_posted']."</td>";
+								echo '<td align="center">'. $row['date_edited']. " - ". $row['time_edited']. "</td>";
+								echo '<td align="center">'. $row['public']. "</td>";
+							echo "</tr>";
 						}
 					}
 					else
@@ -60,7 +60,7 @@
 		<?php
 		if($id_exists)
 		{
-		Print '
+		echo '
 		<form action="edit.php" method="POST">
 			Enter new detail: <input type="text" name="details"/><br/>
 			public post? <input type="checkbox" name="public[]" value="yes"/><br/>
@@ -70,7 +70,7 @@
 		}
 		else
 		{
-			Print '<h2 align="center">There is no data to be edited.</h2>';
+			echo '<h2 align="center">There is no data to be edited.</h2>';
 		}
 		?>
 	</body>

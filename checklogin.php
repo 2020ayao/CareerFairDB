@@ -27,14 +27,14 @@
 		}
 		else
 		{
-			Print '<script>alert("Incorrect Password!");</script>'; //Prompts the user
-			Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
+			echo '<script>alert("Incorrect Password!");</script>'; //Prompts the user
+			echo '<script>window.location.assign("login.php");</script>'; // redirects to login.php
 		}
 
 	}
 	else
 	{
-		Print '<script>alert("Incorrect Username!");</script>'; //Prompts the user
-		Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
+		echo '<script>alert("Incorrect Username!");</script>'; //Prompts the user
+		echo '<script>window.location.assign("login.php");</script>'; // redirects to login.php
 	}
 ?>

@@ -19,6 +19,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$password = mysql_real_escape_string($_POST['password']);
     $bool = true;
 
+    echo "Username entered is: ". $username . "<br />";
+    echo "Password entered is: ". $password;
+
 	mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
 	mysql_select_db("localCF") or die("Cannot connect to database"); //Connect to database
 	$query = mysql_query("Select * from users"); //Query the users table

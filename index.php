@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>My first PHP website</title>
@@ -24,12 +25,12 @@
 				$query = mysql_query("Select * from list Where public='yes'"); // SQL Query
 				while($row = mysql_fetch_array($query))
 				{
-					Print "<tr>";
-						Print '<td align="center">'. $row['id'] . "</td>";
-						Print '<td align="center">'. $row['details'] . "</td>";
-						Print '<td align="center">'. $row['date_posted']. " - ". $row['time_posted']."</td>";
-						Print '<td align="center">'. $row['date_edited']. " - ". $row['time_edited']. "</td>";
-					Print "</tr>";
+					echo "<tr>";
+						echo '<td align="center">'. $row['id'] . "</td>";
+						echo '<td align="center">'. $row['details'] . "</td>";
+						echo '<td align="center">'. $row['date_posted']. " - ". $row['time_posted']."</td>";
+						echo '<td align="center">'. $row['date_edited']. " - ". $row['time_edited']. "</td>";
+					echo "</tr>";
 				}
 			?>
 	</table>

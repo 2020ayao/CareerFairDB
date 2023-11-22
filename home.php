@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>My first PHP website</title>
@@ -13,7 +14,7 @@
 	?>
 	<body>
 		<h2>Home Page</h2>
-		<p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
+		<p>Hello <?php echo "$user"?>!</p> <!--Displays user's name-->
 		<a href="logout.php">Click here to logout</a><br/><br/>
 		<form action="add.php" method="POST">
 			Add more to list: <input type="text" name="details"/><br/>
@@ -37,15 +38,15 @@
 				$query = mysql_query("Select * from list"); // SQL Query
 				while($row = mysql_fetch_array($query))
 				{
-					Print "<tr>";
-						Print '<td align="center">'. $row['id'] . "</td>";
-						Print '<td align="center">'. $row['details'] . "</td>";
-						Print '<td align="center">'. $row['date_posted']. " - ". $row['time_posted']."</td>";
-						Print '<td align="center">'. $row['date_edited']. " - ". $row['time_edited']. "</td>";
-						Print '<td align="center"><a href="edit.php?id='. $row['id'] .'">edit</a> </td>';
-						Print '<td align="center"><a href="#" onclick="myFunction('.$row['id'].')">delete</a> </td>';
-						Print '<td align="center">'. $row['public']. "</td>";
-					Print "</tr>";
+					echo "<tr>";
+						echo '<td align="center">'. $row['id'] . "</td>";
+						echo '<td align="center">'. $row['details'] . "</td>";
+						echo '<td align="center">'. $row['date_posted']. " - ". $row['time_posted']."</td>";
+						echo '<td align="center">'. $row['date_edited']. " - ". $row['time_edited']. "</td>";
+						echo '<td align="center"><a href="edit.php?id='. $row['id'] .'">edit</a> </td>';
+						echo '<td align="center"><a href="#" onclick="myFunction('.$row['id'].')">delete</a> </td>';
+						echo '<td align="center">'. $row['public']. "</td>";
+					echo "</tr>";
 				}
 			?>
 		</table>
