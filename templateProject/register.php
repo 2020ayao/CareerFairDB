@@ -1,18 +1,3 @@
-<html>
-	<head>
-		<title>My first PHP website</title>
-	</head>
-	<body>
-		<h2>Registration Page</h2>
-		<a href="index.php">Click here to go back</a><br/><br/>
-		<form action="register.php" method="post">
-			Enter Username: <input type="text" name="username" required="required"/> <br/>
-			Enter Password: <input type="password" name="password" required="required" /> <br/>
-			<input type="submit" value="Register"/>
-		</form>
-	</body>
-</html>
-
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$username = mysql_real_escape_string($_POST['username']);
@@ -45,3 +30,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My first PHP website</title>
+	</head>
+	<body>
+		<h2>Registration Page</h2>
+		<a href="index.php">Click here to go back</a><br/><br/>
+		<form action="register.php" method="post">
+			Enter Username: <input type="text" name="username" required="required" autocomplete="off"/> <br/>
+			Enter Password: <input type="password" name="password" required="required" /> <br/>
+			<input type="submit" value="Register"/>
+		</form>
+	</body>
+</html>
+
