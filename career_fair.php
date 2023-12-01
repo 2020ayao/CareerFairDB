@@ -2,6 +2,30 @@
 require("connect-db.php");
 require("career_fair-db.php");
 
+// Starting the session, to use and
+// store data in session variable
+session_start();
+
+// If the session variable is empty, this 
+// means the user is yet to login
+// User will be sent to 'login.php' page
+// to allow the user to login
+if (!isset($_SESSION['user_id'])) {
+  $_SESSION['msg'] = "You have to log in first";
+  header('location: login.php');
+}
+
+// Logout button will destroy the session, and
+// will unset the session variables
+// User will be headed to 'login.php'
+// after logging out
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION['user_id']);
+  header("location: login.php");
+}
+
+
 $list_of_career_fair_events = getAllCareerFairEvents();
 //need to fix this
 if ($_SERVER['REQUEST_METHOD'] == 'POST')

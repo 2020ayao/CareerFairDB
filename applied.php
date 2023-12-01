@@ -1,6 +1,6 @@
 <?php
 require("connect-db.php");
-require("recruiter-db.php");
+require("applied-db.php");
 
 // Starting the session, to use and
 // store data in session variable
@@ -26,7 +26,7 @@ if (isset($_GET['logout'])) {
 }
 
 
-$list_of_recruiters = getAllRecruiters();
+$list_of_jobs_applied = getAllApplied();
 
 ?>
 
@@ -47,30 +47,26 @@ $list_of_recruiters = getAllRecruiters();
 
 <?php include("header.html"); ?>
 
+
+
 <hr/>
-<h3>List of recruiters</h3>
+<h3>List of Jobs Applied</h3>
 <div class="row justify-content-center">  
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
   <tr style="background-color:#B0B0B0">
-    <th width="20%">recruiterID        
-    <th width="20%">companyID        
-    <th width="20%">name 
-    <th width="20%">contact_email 
-    <th width="20%">contact_phone 
+    <th width="20%">applicantID       
+    <th width="20%">jobID       
     <th>&nbsp;</th>
     <th>&nbsp;</th>
   </tr>
   </thead>
 
 
-<?php foreach ($list_of_recruiters as $recruiter): ?>
+<?php foreach ($list_of_jobs_applied as $applies): ?>
   <tr>
-     <td><?php echo $recruiter['recruiterID']; ?></td>   <!-- column name --> 
-     <td><?php echo $recruiter['companyID']; ?></td>        
-     <td><?php echo $recruiter['name']; ?></td>
-     <td><?php echo $recruiter['contact_email']; ?></td>    
-     <td><?php echo $recruiter['contact_phone']; ?></td>  
+     <td><?php echo $applies['applicantID']; ?></td>   <!-- column name --> 
+     <td><?php echo $applies['jobID']; ?></td>        
   </tr>
 <?php endforeach; ?>
 </table>

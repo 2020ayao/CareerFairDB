@@ -22,7 +22,7 @@ if (!isset($_SESSION['user_id'])) {
 // after logging out
 if (isset($_GET['logout'])) {
   session_destroy();
-  unset($_SESSION['username']);
+  unset($_SESSION['user_id']);
   header("location: login.php");
 }
 
@@ -30,9 +30,7 @@ $list_of_jobs = getAllJobs();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!empty($_POST['applyBtn'])) {
-    // ALL WE NEED LEFT HERE IS TO INCLUDE THE APPLICANT ID HERE TOO IN ARGUMENT OF THIS FUNCTION
-    // MISSING THE FIRST ARGUMENT OF APPLICANT ID
-    applyToJob($_POST['applicantID'], $_POST['job_to_apply']);
+    applyToJob($_SESSION['user_id'], $_POST['job_to_apply']);
     $list_of_jobs = getAllJobs();
   }
 }
@@ -89,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <?php echo $job['company']; ?>
             </td>
             <td>
-              <form action="simpleform.php" method="post">
+              <form action="jobpostings.php" method="post">
                 <input type="submit" value="Apply" name="applyBtn" class="btn btn-success" />
                 <input type="hidden" name="job_to_apply" value="<?php echo $job['jobID']; ?>" />
               </form>
