@@ -5,7 +5,7 @@ function getAllCareerFairEvents()
 {
   global $db;
   $query = "select * from Career_fair";
-  $statement = $db->prepare($query); 
+  $statement = $db->prepare($query);
   $statement->execute();
   $results = $statement->fetchAll();   // fetch()
   $statement->closeCursor();
@@ -16,11 +16,11 @@ function getAllCareerFairEvents()
 function attendCareerFairEvent($applicantID, $careerFairID, $recruiterID)
 {
   global $db;
-  $query = "insert into Attends values (:applicantID , :jobID, :recruiterID)";
+  $query = "insert into Attends values (:applicantID , :careerFairID, :recruiterID)";
 
   $statement = $db->prepare($query);
   $statement->bindValue(':applicantID', $applicantID);
-  $statement->bindValue(':careerFairID', $jobID);
+  $statement->bindValue(':careerFairID', $careerFairID);
   $statement->bindValue(':recruiterID', $recruiterID);
 
   $statement->execute();

@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS Job (
    jobID int NOT NULL PRIMARY KEY, 
    title varchar(30) NOT NULL,
    industry varchar(30) NOT NULL,
-   pay int NOT NULL
+   pay int NOT NULL,
+   company varchar(30) NOT NULL
 ); 
 
 
