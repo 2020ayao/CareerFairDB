@@ -53,9 +53,10 @@ $list_of_jobs_applied = getAllApplied();
 <?php include("header.html"); ?>
 
 
-
+<div class="container">
+<h1>Jobs Applied</h1>
 <hr/>
-<h3>List of Jobs Applied</h3>
+
 <div class="row justify-content-center">  
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
@@ -96,6 +97,7 @@ $list_of_jobs_applied = getAllApplied();
   <!-- for local -->
   <!-- <script src="your-js-file.js"></script> -->  
   
+</div> 
 </div> 
 
 <?php include("footer.html"); ?>

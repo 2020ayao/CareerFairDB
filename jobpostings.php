@@ -57,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h1>Job Postings</h1>
 
     <hr />
-    <h3>List of jobs</h3>
     <div class="row justify-content-center">
       <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
         <thead>

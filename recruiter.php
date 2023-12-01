@@ -46,18 +46,18 @@ $list_of_recruiters = getAllRecruiters();
 <body>
 
 <?php include("header.html"); ?>
-
+<div class="container">
+<h1>Recruiters</h1>
 <hr/>
-<h3>List of recruiters</h3>
+
 <div class="row justify-content-center">  
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
   <tr style="background-color:#B0B0B0">
-    <th width="20%">recruiterID        
-    <th width="20%">companyID        
-    <th width="20%">name 
-    <th width="20%">contact_email 
-    <th width="20%">contact_phone 
+    <th width="20%">Company Name      
+    <th width="20%">Name
+    <th width="20%">Email
+    <th width="20%">Phone Number
     <th>&nbsp;</th>
     <th>&nbsp;</th>
   </tr>
@@ -66,9 +66,8 @@ $list_of_recruiters = getAllRecruiters();
 
 <?php foreach ($list_of_recruiters as $recruiter): ?>
   <tr>
-     <td><?php echo $recruiter['recruiterID']; ?></td>   <!-- column name --> 
-     <td><?php echo $recruiter['companyID']; ?></td>        
      <td><?php echo $recruiter['name']; ?></td>
+     <td><?php echo $recruiter['recruiterName']; ?></td>        
      <td><?php echo $recruiter['contact_email']; ?></td>    
      <td><?php echo $recruiter['contact_phone']; ?></td>  
   </tr>
@@ -86,6 +85,7 @@ $list_of_recruiters = getAllRecruiters();
   <!-- <script src="your-js-file.js"></script> -->  
   
 </div> 
+</div>  
 
 <?php include("footer.html"); ?>
 </body>

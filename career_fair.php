@@ -57,9 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <body>
 <?php include("header.html"); ?>  
 
-
+<div class="container">
+<h1>Career Fair Events</h1>
 <hr/>
-<h3>List of Career Fair Events</h3>
+
 <div class="row justify-content-center">  
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
@@ -103,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <!-- for local -->
   <!-- <script src="your-js-file.js"></script> -->  
   
+</div> 
 </div> 
 
 <?php include("footer.html"); ?>
