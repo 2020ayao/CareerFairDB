@@ -11,7 +11,7 @@ session_start();
 // means the user is yet to login
 // User will be sent to 'login.php' page
 // to allow the user to login
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user_id'])) {
   $_SESSION['msg'] = "You have to log in first";
   header('location: login.php');
 }

@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
                 // Set session variables
                 $_SESSION['loggedin'] = true;
                 $_SESSION['email'] = $email;
-                $_SESSION['username'] = $fetch['username']; // Assuming 'applicantID' is your user identifier
+                $_SESSION['user_id'] = $fetch['applicantID']; // Assuming 'applicantID' is your user identifier
 
                 header("location: jobpostings.php");
                 exit;
