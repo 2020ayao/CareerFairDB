@@ -1,8 +1,8 @@
 
--- INSERT INTO Applicant VALUES (1 ,'Jonathan Guo', 'test@gmail.com', '7030001111', 3.95, 'Computer Science', 'University of Virginia');
--- INSERT INTO Applicant VALUES (2 ,'Adam Yao', 'test1@gmail.com', '7030002222', 2.90, 'Computer Science', 'University of Virginia');
--- INSERT INTO Applicant VALUES (3 ,'Yumi Kim', 'test2@gmail.com', '7030003333', 3.99, 'Computer Science', 'University of Virginia');
--- INSERT INTO Applicant VALUES (4 ,'Greg Cho', 'test3@gmail.com', '7030004444', 3.55, 'Computer Science', 'University of Virginia');
+INSERT INTO Applicant(username, password, email) VALUES ('Jonathan Guo', 'password', 'test@gmail.com');
+INSERT INTO Applicant(username, password, email) VALUES ('Adam Yao','password', 'test1@gmail.com');
+INSERT INTO Applicant(username, password, email)  VALUES ('Yumi Kim', 'password', 'test2@gmail.com');
+INSERT INTO Applicant(username, password, email) VALUES ('Greg Cho', 'password', 'test3@gmail.com');
 
 
 INSERT INTO Company VALUES (1 ,'Google');
@@ -44,8 +44,8 @@ INSERT INTO Hires VALUES (2 ,2);
 INSERT INTO Reaches_out VALUES (1 ,3);
 INSERT INTO Reaches_out VALUES (2 ,3);
 
-INSERT INTO Attends VALUES (1 ,3, 2);
-INSERT INTO Attends VALUES (2 ,3, 1);
+INSERT INTO Attends VALUES (1 ,1, 2);
+INSERT INTO Attends VALUES (2 ,1, 1);
 
 
 
