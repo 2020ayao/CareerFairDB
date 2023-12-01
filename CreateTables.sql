@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS Reaches_out (
 
 CREATE TABLE IF NOT EXISTS Attends (
    applicantID int NOT NULL,
-   jobID int NOT NULL, 
+   careerFairID int NOT NULL, 
    recruiterID int NOT NULL, 
    FOREIGN KEY (recruiterID) REFERENCES Recruiter(recruiterID),
    FOREIGN KEY (applicantID) REFERENCES Applicant(applicantID),
