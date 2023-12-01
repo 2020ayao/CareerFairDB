@@ -1,7 +1,24 @@
+<?php
+require("header-db.php");
+?>
+
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Your-Logo</a>
+      <?php
+      // Starting the session to access user information
+      // session_start();
+
+      // Check if the user is logged in
+      if (isset($_SESSION['user_id'])) {
+        $userId = $_SESSION['user_id'];
+        $username = getUsernameById($userId);
+        echo '<span class="nav-link">Logged in as: ' . $username . '</span>';
+    } else {
+        echo '<span class="nav-link">Not logged in</span>';
+    }
+      ?>
+      <!-- <a class="navbar-brand" href="#">Your-Logo</a> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
         aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

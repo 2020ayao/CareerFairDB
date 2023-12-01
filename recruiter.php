@@ -45,7 +45,7 @@ $list_of_recruiters = getAllRecruiters();
 
 <body>
 
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 <div class="container">
 <h1>Recruiters</h1>
 <hr/>

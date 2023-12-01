@@ -36,5 +36,5 @@ function hasUserApplied($userId, $jobId)
     $statement->closeCursor();
     return ($count > 0);
 }
-?>
+
 

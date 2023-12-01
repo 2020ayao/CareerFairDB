@@ -50,7 +50,7 @@ $list_of_jobs_applied = getAllApplied();
 
 <body>
 
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 
 
 <div class="container">
