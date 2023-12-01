@@ -6,29 +6,15 @@ $list_of_jobs = getAllJobs();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-   if (!empty($_POST['updateBtn']))
+   if (!empty($_POST['applyBtn']))
    {
-     echo $_POST['friendname_to_update'];
-   } 
-   else if (!empty($_POST['confirmUpdateBtn']))
-   {
-      updateFriendByName($_POST['friendname'], $_POST['major'], $_POST['year']);
-      $list_of_jobs = getAllJobs();    // name, major, year
-   }
-   else if (!empty($_POST['deleteBtn']))
-   {
-      deleteFriend($_POST['friendname_to_delete']);
-      $list_of_jobs = getAllJobs();    // name, major, year
-   }
-   else if (!empty($_POST['addBtn']))
-   {
-      addFriend($_POST['friendname'], $_POST['major'], $_POST['year']);
-      $list_of_jobs = getAllJobs();    // name, major, year
+    // ALL WE NEED LEFT HERE IS TO INCLUDE THE APPLICANT ID HERE TOO IN ARGUMENT OF THIS FUNCTION
+    // MISSING THE FIRST ARGUMENT OF APPLICANT ID
+      applyToJob($_POST['applicantID'], $_POST['job_to_apply']);
+      $list_of_jobs = getAllJobs();
    }
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="your name">
   <meta name="description" content="include some description about your page">  
-  <title>Get started with DB programming</title>
+  <title>Job Postings</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">  
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
@@ -47,54 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <?php include("header.html"); ?>  
 
 <div class="container">
-  <h1>DB programming: Get Started</h1>  
-
-  <form name="mainForm" action="simpleform.php" method="post">   
-      <div class="row mb-3 mx-3">
-        Your name:
-        <input type="text" class="form-control" name="friendname" required 
-            value="<?php echo isset($_POST['friendname_to_update']) ? $_POST['friendname_to_update'] : ''; ?>"
-        />        
-      </div>  
-      <div class="row mb-3 mx-3">
-        Major:
-        <input type="text" class="form-control" name="major" required 
-            value="<?php echo isset($_POST['major_to_update']) ? $_POST['major_to_update'] : ''; ?>"
-        />
-      </div>  
-      <div class="row mb-3 mx-3">
-        Year:
-        <input type="text" class="form-control" name="year" required 
-            value="<?php 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST')
-            { 
-              if (!empty($_POST['updateBtn']))  // if the update button has been clicked
-                echo $_POST['year_to_update']; // access the $_POST['param_name'] 
-            }
-            // echo $_POST['year_to_update']; 
-            ?>"
-        />        
-      </div>  
-      <div class="row mb-3 mx-3">
-        <input type="submit" value="Add friend" name="addBtn" 
-                class="btn btn-primary" title="Insert a friend into a friends table" />
-      </div>  
-      <div class="row mb-3 mx-3">
-        <input type="submit" value="Confirm update" name="confirmUpdateBtn" 
-                class="btn btn-secondary" title="Update a friend into a friends table" />
-      </div>  
-
-    </form>     
+  <h1>Job Postings</h1>  
 
 <hr/>
-<h3>List of friends</h3>
+<h3>List of jobs</h3>
 <div class="row justify-content-center">  
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
   <tr style="background-color:#B0B0B0">
-    <th width="30%">Name        
-    <th width="30%">Major        
-    <th width="30%">Year 
+    <th width="30%">Title        
+    <th width="25%">Industry     
+    <th width="20%">Pay 
+    <th width="30%">Company
     <th>&nbsp;</th>
     <th>&nbsp;</th>
   </tr>
@@ -106,25 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
      <td><?php echo $job['title']; ?></td>   <!-- column name --> 
      <td><?php echo $job['industry']; ?></td>        
      <td><?php echo $job['pay']; ?></td>  
-     <td>
-        <form action="simpleform.php" method="post">
-          <input type="submit" value="Update" name="updateBtn" class="btn btn-secondary" />
-          <input type="hidden" name="friendname_to_update"  
-                 value="<?php echo $job['title']; ?>" 
-          />
-          <input type="hidden" name="major_to_update"  
-                 value="<?php echo $job['industry']; ?>" 
-          />
-          <input type="hidden" name="year_to_update"  
-                 value="<?php echo $job['pay']; ?>" 
-          />
-        </form>
-     </td>
+     <td><?php echo $job['company']; ?></td>  
      <td>
       <form action="simpleform.php" method="post">
-         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"  />
-         <input type="hidden" name="friendname_to_delete"  
-                 value="<?php echo $job['title']; ?>" 
+         <input type="submit" value="Apply" name="applyBtn" class="btn btn-success"  />
+         <input type="hidden" name="job_to_apply"  
+                 value="<?php echo $job['jobID']; ?>" 
           />
       </form>
      </td>
