@@ -50,9 +50,9 @@ function applyToJob($applicantID, $jobID)
   $query = "insert into Applies values (:applicantID , :jobID)";
 
   $statement = $db->prepare($query);
-  $statement->bindValue(':name', $name);
-  $statement->bindValue(':major', $major);
-  $statement->bindValue(':year', $year);
+  $statement->bindValue(':applicantID', $applicantID);
+  $statement->bindValue(':jobID', $jobID);
+
   $statement->execute();
   $statement->closeCursor();
 }
