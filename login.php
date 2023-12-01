@@ -1,7 +1,6 @@
 <?php
 session_start();
 require("connect-db.php");
-require("friend-db.php");
 
 $email = $password = "";
 $email_err = $password_err = $login_err = "";

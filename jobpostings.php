@@ -1,6 +1,6 @@
 <?php
 require("connect-db.php");
-require("friend-db.php");
+require("jobpostings-db.php");
 
 
 // Starting the session, to use and
@@ -71,33 +71,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </tr>
         </thead>
 
-
         <?php foreach ($list_of_jobs as $job): ?>
           <tr>
+            <td><?php echo $job['title']; ?></td>
+            <td><?php echo $job['industry']; ?></td>
+            <td><?php echo $job['pay']; ?></td>
+            <td><?php echo $job['company']; ?></td>
             <td>
-              <?php echo $job['title']; ?>
-            </td> <!-- column name -->
-            <td>
-              <?php echo $job['industry']; ?>
-            </td>
-            <td>
-              <?php echo $job['pay']; ?>
-            </td>
-            <td>
-              <?php echo $job['company']; ?>
-            </td>
-            <td>
-              <form action="jobpostings.php" method="post">
-                <input type="submit" value="Apply" name="applyBtn" class="btn btn-success" />
-                <input type="hidden" name="job_to_apply" value="<?php echo $job['jobID']; ?>" />
-              </form>
+              <?php
+            // Check if the user has already applied to this job
+              $hasApplied = hasUserApplied($_SESSION['user_id'], $job['jobID']);
+              
+              if ($hasApplied) {
+                  echo '<button class="btn btn-secondary" disabled>Applied already</button>';
+              } else {
+                  // If not applied, show the Apply button
+                  echo '
+                      <form action="jobpostings.php" method="post">
+                          <input type="submit" value="Apply" name="applyBtn" class="btn btn-success" />
+                          <input type="hidden" name="job_to_apply" value="' . $job['jobID'] . '" />
+                      </form>
+                  ';
+              }
+              ?>
             </td>
           </tr>
         <?php endforeach; ?>
       </table>
     </div>
-
-
 
     <!-- CDN for JS bootstrap -->
     <!-- you may also use JS bootstrap to make the page dynamic -->

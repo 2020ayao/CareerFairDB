@@ -1,7 +1,7 @@
 <?php
 session_start();
 require("connect-db.php");
-require("friend-db.php");
+require("register-db.php");
 
 // Initialize variables
 $username = $email = $password = $passwordrepeat = "";
