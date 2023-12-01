@@ -10,11 +10,11 @@ INSERT INTO Company VALUES (2 ,'Microsoft');
 INSERT INTO Company VALUES (3 ,'Capital One');
 INSERT INTO Company VALUES (4 ,'Captech');
 
-INSERT INTO Job VALUES (1 ,'Software Engineer I', 'Engineering', 160000);
-INSERT INTO Job VALUES (2 ,'Software Engineer II', 'Engineering', 175000);
-INSERT INTO Job VALUES (3 ,'New Graduate Business Analyst', 'Engineering', 400000);
-INSERT INTO Job VALUES (4 ,'Project Manager I', 'Engineering', 120000);
-INSERT INTO Job VALUES (5 ,'Associate Consultant', 'Consulting', 75000);
+INSERT INTO Job VALUES (1 ,'Software Engineer I', 'Engineering', 160000, 'Google');
+INSERT INTO Job VALUES (2 ,'Software Engineer II', 'Engineering', 175000, 'Google');
+INSERT INTO Job VALUES (3 ,'New Graduate Business Analyst', 'Engineering', 400000, 'Deloitte');
+INSERT INTO Job VALUES (4 ,'Project Manager I', 'Engineering', 120000, 'Microsoft');
+INSERT INTO Job VALUES (5 ,'Associate Consultant', 'Consulting', 75000, 'EY');
 
 INSERT INTO Recruiter VALUES (1 ,1, 'Lauren Cox', 'laurencox@capitalone.com', '7034567891');
 INSERT INTO Recruiter VALUES (2 ,2, 'Morgan Quencia', 'morganquencia@bloomberg.com', '5713466738');

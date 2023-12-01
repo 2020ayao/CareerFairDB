@@ -44,10 +44,10 @@ function getAllJobs()
   return $results;
 }
 
-function updateFriendByName($name, $major, $year)
+function applyToJob($applicantID, $jobID)
 {
   global $db;
-  $query = "update friends set major=:major, year=:year where name=:name";
+  $query = "insert into Applies values (:applicantID , :jobID)";
 
   $statement = $db->prepare($query);
   $statement->bindValue(':name', $name);
@@ -67,5 +67,4 @@ function deleteFriend($name)
   $statement->execute();
   $statement->closeCursor();
 }
-
 ?>
