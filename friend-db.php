@@ -24,10 +24,10 @@ function addFriend($friendname, $major, $year)
 function registerApplicant($username, $password, $email)
 {
   global $db;
-  $query = "insert into Applicant values (:username, :password, :email) ";
+  $query = "insert into Applicant(username, passwrd, email) values (:username, :passwrd, :email) ";
   $statement = $db->prepare($query);
   $statement->bindValue(':username', $username);
-  $statement->bindValue(':password', $password);
+  $statement->bindValue(':passwrd', $password);
   $statement->bindValue(':email', $email);
   $statement->execute();
   $statement->closeCursor();

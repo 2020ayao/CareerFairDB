@@ -3,7 +3,7 @@
 CREATE TABLE IF NOT EXISTS Applicant (
    applicantID int NOT NULL AUTO_INCREMENT,
    username varchar(30) NOT NULL,
-   password varchar(61) NOT NULL,
+   passwrd varchar(61) NOT NULL,
    email varchar(50) NOT NULL,
    PRIMARY KEY (applicantID)
    -- contact_phone int NOT NULL,
