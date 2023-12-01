@@ -94,5 +94,5 @@ CREATE TABLE IF NOT EXISTS Attends (
    recruiterID int NOT NULL, 
    FOREIGN KEY (recruiterID) REFERENCES Recruiter(recruiterID),
    FOREIGN KEY (applicantID) REFERENCES Applicant(applicantID),
-   FOREIGN KEY (jobID) REFERENCES Job(jobID)
+   FOREIGN KEY (careerFairID) REFERENCES Career_fair(careerFairID)
    );
