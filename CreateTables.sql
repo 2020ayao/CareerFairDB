@@ -1,13 +1,15 @@
 /*--------- APPLICANT -------------
 --  applicant(applicantID, name, contact_email, contact_phone, gpa, school, resume)*/
 CREATE TABLE IF NOT EXISTS Applicant (
-   applicantID int NOT NULL PRIMARY KEY, 
-   name varchar(30) NOT NULL,
-   contact_email varchar(50) NOT NULL,
-   contact_phone int NOT NULL,
-   gpa float NOT NULL,  
-   major varchar(10) NOT NULL,
-   school varchar(50) NOT NULL
+   applicantID int NOT NULL AUTO_INCREMENT,
+   username varchar(30) NOT NULL,
+   password varchar(61) NOT NULL,
+   email varchar(50) NOT NULL,
+   PRIMARY KEY (applicantID)
+   -- contact_phone int NOT NULL,
+   -- gpa float NOT NULL,  
+   -- major varchar(10) NOT NULL,
+   -- school varchar(50) NOT NULL
 ); 
 
 /*-- ------- COMPANY -------------
@@ -27,8 +29,7 @@ CREATE TABLE IF NOT EXISTS Job (
    jobID int NOT NULL PRIMARY KEY, 
    title varchar(30) NOT NULL,
    industry varchar(30) NOT NULL,
-   pay int NOT NULL,
-   company varchar(30) NOT NULL
+   pay int NOT NULL
 ); 
 
 

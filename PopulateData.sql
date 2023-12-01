@@ -1,8 +1,8 @@
 
-INSERT INTO Applicant VALUES (1 ,'Jonathan Guo', 'test@gmail.com', '7030001111', 3.95, 'Computer Science', 'University of Virginia');
-INSERT INTO Applicant VALUES (2 ,'Adam Yao', 'test1@gmail.com', '7030002222', 2.90, 'Computer Science', 'University of Virginia');
-INSERT INTO Applicant VALUES (3 ,'Yumi Kim', 'test2@gmail.com', '7030003333', 3.99, 'Computer Science', 'University of Virginia');
-INSERT INTO Applicant VALUES (4 ,'Greg Cho', 'test3@gmail.com', '7030004444', 3.55, 'Computer Science', 'University of Virginia');
+-- INSERT INTO Applicant VALUES (1 ,'Jonathan Guo', 'test@gmail.com', '7030001111', 3.95, 'Computer Science', 'University of Virginia');
+-- INSERT INTO Applicant VALUES (2 ,'Adam Yao', 'test1@gmail.com', '7030002222', 2.90, 'Computer Science', 'University of Virginia');
+-- INSERT INTO Applicant VALUES (3 ,'Yumi Kim', 'test2@gmail.com', '7030003333', 3.99, 'Computer Science', 'University of Virginia');
+-- INSERT INTO Applicant VALUES (4 ,'Greg Cho', 'test3@gmail.com', '7030004444', 3.55, 'Computer Science', 'University of Virginia');
 
 
 INSERT INTO Company VALUES (1 ,'Google');
