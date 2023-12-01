@@ -2,6 +2,9 @@
 require("connect-db.php");
 require("applied-db.php");
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 // Starting the session, to use and
 // store data in session variable
 session_start();
