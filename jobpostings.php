@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <th>&nbsp;</th>
           </tr>
         </thead>
-
         <?php foreach ($list_of_jobs as $job): ?>
           <tr>
             <td><?php echo $job['title']; ?></td>
@@ -78,19 +77,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <td><?php echo $job['company']; ?></td>
             <td>
               <?php
-            // Check if the user has already applied to this job
+              // Check if the user has already applied to this job
               $hasApplied = hasUserApplied($_SESSION['user_id'], $job['jobID']);
-              
-              if ($hasApplied) {
+
+              // Check the user type
+              $userType = $_SESSION['user_type'];
+
+              if ($userType === 'applicant') {
+                // If the user is an applicant, show the Apply button
+                if ($hasApplied) {
                   echo '<button class="btn btn-secondary" disabled>Applied already</button>';
-              } else {
-                  // If not applied, show the Apply button
+                } else {
                   echo '
-                      <form action="jobpostings.php" method="post">
-                          <input type="submit" value="Apply" name="applyBtn" class="btn btn-success" />
-                          <input type="hidden" name="job_to_apply" value="' . $job['jobID'] . '" />
-                      </form>
+                    <form action="jobpostings.php" method="post">
+                        <input type="submit" value="Apply" name="applyBtn" class="btn btn-success" />
+                        <input type="hidden" name="job_to_apply" value="' . $job['jobID'] . '" />
+                    </form>
                   ';
+                }
+              } else {
+                // If the user is a recruiter or company, show a message
+                echo '<span class="text-muted">Recruiters and Companies cannot apply to jobs</span>';
               }
               ?>
             </td>

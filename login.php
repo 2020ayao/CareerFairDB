@@ -22,21 +22,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
 
     // Validate credentials
     if (empty($email_err) && empty($password_err)) {
-        $sql = $db->prepare("SELECT * FROM `Applicant` WHERE `email` = ?");
-        $sql->bindParam(1, $email, PDO::PARAM_STR);
-        $sql->execute();
-        $fetch = $sql->fetch();
+        // Check in the Applicant table
+        $sql_applicant = $db->prepare("SELECT * FROM `Applicant` WHERE `email` = ?");
+        $sql_applicant->bindParam(1, $email, PDO::PARAM_STR);
+        $sql_applicant->execute();
+        $fetch_applicant = $sql_applicant->fetch();
 
-        if ($fetch) {
-            $passHash = $fetch['password'];
+        // Check in the Recruiter table
+        $sql_recruiter = $db->prepare("SELECT * FROM `Recruiter` WHERE `email` = ?");
+        $sql_recruiter->bindParam(1, $email, PDO::PARAM_STR);
+        $sql_recruiter->execute();
+        $fetch_recruiter = $sql_recruiter->fetch();
 
+        // Check in the Company table
+        $sql_company = $db->prepare("SELECT * FROM `Company` WHERE `email` = ?");
+        $sql_company->bindParam(1, $email, PDO::PARAM_STR);
+        $sql_company->execute();
+        $fetch_company = $sql_company->fetch();
+
+        if ($fetch_applicant) {
+            // Applicant login
+            $passHash = $fetch_applicant['password'];
             if (password_verify($password, $passHash)) {
-                // Set session variables
                 $_SESSION['loggedin'] = true;
                 $_SESSION['email'] = $email;
-                $_SESSION['user_id'] = $fetch['applicantID']; // Assuming 'applicantID' is your user identifier
-
+                $_SESSION['user_id'] = $fetch_applicant['applicantID'];
+                $_SESSION['user_type'] = 'applicant';
                 header("location: jobpostings.php");
+                exit;
+            } else {
+                $login_err = 'Password incorrect!';
+            }
+        } elseif ($fetch_recruiter) {
+            // Recruiter login
+            $passHash = $fetch_recruiter['password'];
+            if (password_verify($password, $passHash)) {
+                $_SESSION['loggedin'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['user_id'] = $fetch_recruiter['recruiterID'];
+                $_SESSION['user_type'] = 'recruiter';
+                header("location: recruiter.php");
+                exit;
+            } else {
+                $login_err = 'Password incorrect!';
+            }
+        } elseif ($fetch_company) {
+            // Company login
+            $passHash = $fetch_company['password'];
+            if (password_verify($password, $passHash)) {
+                $_SESSION['loggedin'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['user_id'] = $fetch_company['companyID'];
+                $_SESSION['user_type'] = 'company';
+                header("location: career_fair.php");
                 exit;
             } else {
                 $login_err = 'Password incorrect!';
@@ -47,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
