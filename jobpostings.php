@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
   <?php include("header.html"); ?>
-
   <div class="container">
     <h1>Job Postings</h1>
 
