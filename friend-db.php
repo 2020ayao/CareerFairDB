@@ -2,9 +2,11 @@
 function addFriend($friendname, $major, $year)
 {
   global $db;
-  //   $query = "insert into friends values ('" . $friendname . "', '" . $major . "'," . $year .") ";
+  // bad way
+  // $query = "insert into friends values ('" . $friendname . "', '" . $major . "'," . $year .") ";
   // $db->query($query);  // compile + exe
 
+  // good way
   $query = "insert into friends values (:friendname, :major, :year) ";
   // prepare: 
   // 1. prepare (compile) 
@@ -29,46 +31,28 @@ function getAllFriends()
   return $results;
 }
 
-function updateFriendByName($friendname_to_update, $new_major, $new_year)
+function updateFriendByName($name, $major, $year)
 {
   global $db;
-  // Correctly formatted query with placeholders for values
-  $query = "UPDATE friends SET major = :major, year = :year WHERE name = :name";
+  $query = "update friends set major=:major, year=:year where name=:name";
+
   $statement = $db->prepare($query);
-
-  // Binding the parameters to the query
-  $statement->bindValue(':name', $friendname_to_update);
-  $statement->bindValue(':major', $new_major);
-  $statement->bindValue(':year', $new_year);
-
-  // Execute the query
+  $statement->bindValue(':name', $name);
+  $statement->bindValue(':major', $major);
+  $statement->bindValue(':year', $year);
   $statement->execute();
-
-  // For UPDATE operations, you usually check the number of affected rows
-  $count = $statement->rowCount();
   $statement->closeCursor();
-
-  // Return the number of affected rows
-  return $count;
 }
 
-
-function deleteFriend($friendname_to_delete)
+function deleteFriend($name)
 {
   global $db;
-  // Correct the query to use a placeholder for the value
-  $query = "DELETE FROM friends WHERE name = :name";
+  $query = "delete from friends where name=:name";
+
   $statement = $db->prepare($query);
-  // Bind the placeholder to the actual value
-  $statement->bindValue(':name', $friendname_to_delete);
+  $statement->bindValue(':name', $name);
   $statement->execute();
-
-  // For DELETE operations, you usually check the number of affected rows
-  $count = $statement->rowCount();
   $statement->closeCursor();
-
-  // Return the number of affected rows
-  return $count;
 }
 
 ?>
