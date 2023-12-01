@@ -55,8 +55,10 @@ $list_of_jobs_applied = getAllApplied();
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
   <tr style="background-color:#B0B0B0">
-    <th width="20%">applicantID       
-    <th width="20%">jobID       
+    <th width="20%">Title   
+    <th width="20%">Industry   
+    <th width="20%">Pay  
+    <th width="20%">Company       
     <th>&nbsp;</th>
     <th>&nbsp;</th>
   </tr>
@@ -65,8 +67,10 @@ $list_of_jobs_applied = getAllApplied();
 
 <?php foreach ($list_of_jobs_applied as $applies): ?>
   <tr>
-     <td><?php echo $applies['applicantID']; ?></td>   <!-- column name --> 
-     <td><?php echo $applies['jobID']; ?></td>        
+     <td><?php echo $applies['title']; ?></td>   <!-- column name --> 
+     <td><?php echo $applies['industry']; ?></td> 
+     <td><?php echo $applies['pay']; ?></td> 
+     <td><?php echo $applies['company']; ?></td>        
   </tr>
 <?php endforeach; ?>
 </table>
