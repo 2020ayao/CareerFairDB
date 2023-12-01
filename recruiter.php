@@ -68,8 +68,8 @@ $list_of_recruiters = getAllRecruiters();
   <tr>
      <td><?php echo $recruiter['name']; ?></td>
      <td><?php echo $recruiter['recruiterName']; ?></td>        
-     <td><?php echo $recruiter['contact_email']; ?></td>    
-     <td><?php echo $recruiter['contact_phone']; ?></td>  
+     <td><?php echo $recruiter['email']; ?></td>    
+     <td><?php echo $recruiter['phone']; ?></td>  
   </tr>
 <?php endforeach; ?>
 </table>

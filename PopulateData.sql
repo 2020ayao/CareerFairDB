@@ -5,10 +5,10 @@ INSERT INTO Applicant(username, password, email)  VALUES ('Yumi Kim', 'password'
 INSERT INTO Applicant(username, password, email) VALUES ('Greg Cho', 'password', 'test3@gmail.com');
 
 
-INSERT INTO Company (name) VALUES ('Google');
-INSERT INTO Company (name) VALUES ('Microsoft');
-INSERT INTO Company (name) VALUES ('Capital One');
-INSERT INTO Company (name) VALUES ('Captech');
+INSERT INTO Company (name, password, email) VALUES ('Google', 'password', '123@gmail.com');
+INSERT INTO Company (name, password, email) VALUES ('Microsoft', 'password', '223@gmail.com');
+INSERT INTO Company (name, password, email) VALUES ('Capital One', 'password', '323@gmail.com');
+INSERT INTO Company (name, password, email) VALUES ('Captech', 'password', '423@gmail.com');
 
 INSERT INTO Job (title, industry, pay, company) VALUES ('Software Engineer I', 'Engineering', 160000, 'Google');
 INSERT INTO Job (title, industry, pay, company) VALUES ('Software Engineer II', 'Engineering', 175000, 'Google');

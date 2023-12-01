@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS Applicant (
 CREATE TABLE IF NOT EXISTS Company (
    companyID int NOT NULL AUTO_INCREMENT, 
    name varchar(30) NOT NULL,
+   password varchar(61) NOT NULL,
+   email varchar(50) NOT NULL,
    PRIMARY KEY (companyID)
 ); 
 
@@ -43,8 +45,9 @@ CREATE TABLE IF NOT EXISTS Recruiter (
    recruiterID int NOT NULL AUTO_INCREMENT, 
    companyID int NOT NULL, 
    name varchar(30) NOT NULL,
-   contact_email varchar(50) NOT NULL,
-   contact_phone varchar(10) NOT NULL,
+   email varchar(50) NOT NULL,
+   phone varchar(10) NOT NULL,
+   password varchar(61) NOT NULL,
    FOREIGN KEY (companyID) REFERENCES Company(companyID),
    PRIMARY KEY (recruiterID)
 ); 
