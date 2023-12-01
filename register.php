@@ -3,124 +3,196 @@ session_start();
 require("connect-db.php");
 require("register-db.php");
 
-// Initialize variables for student registration
+// Initialize variables
 $username = $email = $password = $confirm_password = "";
 $username_err = $email_err = $password_err = $confirm_password_err = "";
 
-// Initialize variables for recruiter registration
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate username
+    if (empty(trim($_POST["username"]))) {
+        $username_err = "Please enter a username.";
+    } else {
+        $username = trim($_POST["username"]);
+    }
+
+    // Validate email
+    if (empty(trim($_POST["student_email"]))) {
+        $email_err = "Please enter an email.";
+    } else {
+        $email = trim($_POST["student_email"]);
+    }
+
+    // Validate password
+    if (empty(trim($_POST["student_password"]))) {
+        $password_err = "Please enter a password.";
+    } elseif (strlen(trim($_POST["student_password"])) < 6) {
+        $password_err = "Password must have at least 6 characters.";
+    } else {
+        $password = trim($_POST["student_password"]);
+    }
+
+    // Validate confirm password
+    if (empty(trim($_POST["student_confirm_password"]))) {
+        $confirm_password_err = "Please confirm password.";
+    } else {
+        $confirm_password = trim($_POST["student_confirm_password"]);
+        if (empty($password_err) && ($password != $confirm_password)) {
+            $confirm_password_err = "Password did not match.";
+        }
+    }
+
+    // Check input errors before inserting into the database
+    if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
+        // Hash the password before storing it in the database
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insert the student's information into the database
+        $stmt = $db->prepare("INSERT INTO Applicant (username, password, email) VALUES (?, ?, ?)");
+        $stmt->bindParam(1, $username, PDO::PARAM_STR);
+        $stmt->bindParam(2, $hashed_password, PDO::PARAM_STR);
+        $stmt->bindParam(3, $email, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            // Redirect to the login page after successful registration
+            header("location: login.php");
+            exit;
+        } else {
+            echo "Something went wrong. Please try again later.";
+        }
+    }
+}
 $company_id = $recruiter_name = $recruiter_email = $recruiter_phone = $recruiter_password = $recruiter_confirm_password = "";
 $company_id_err = $recruiter_name_err = $recruiter_email_err = $recruiter_phone_err = $recruiter_password_err = $recruiter_confirm_password_err = "";
 
-// Initialize variables for company registration
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate company ID
+    if (empty(trim($_POST["company_id"]))) {
+        $company_id_err = "Please enter a company ID.";
+    } else {
+        $company_id = trim($_POST["company_id"]);
+    }
+
+    // Validate recruiter name
+    if (empty(trim($_POST["recruiter_name"]))) {
+        $recruiter_name_err = "Please enter a recruiter name.";
+    } else {
+        $recruiter_name = trim($_POST["recruiter_name"]);
+    }
+
+    // Validate recruiter email
+    if (empty(trim($_POST["recruiter_email"]))) {
+        $recruiter_email_err = "Please enter a recruiter email.";
+    } else {
+        $recruiter_email = trim($_POST["recruiter_email"]);
+    }
+
+    // Validate recruiter phone
+    if (empty(trim($_POST["recruiter_phone"]))) {
+        $recruiter_phone_err = "Please enter a recruiter phone number.";
+    } else {
+        $recruiter_phone = trim($_POST["recruiter_phone"]);
+    }
+
+    // Validate recruiter password
+    if (empty(trim($_POST["recruiter_password"]))) {
+        $recruiter_password_err = "Please enter a password.";
+    } elseif (strlen(trim($_POST["recruiter_password"])) < 6) {
+        $recruiter_password_err = "Password must have at least 6 characters.";
+    } else {
+        $recruiter_password = trim($_POST["recruiter_password"]);
+    }
+
+    // Validate recruiter confirm password
+    if (empty(trim($_POST["recruiter_confirm_password"]))) {
+        $recruiter_confirm_password_err = "Please confirm the password.";
+    } else {
+        $recruiter_confirm_password = trim($_POST["recruiter_confirm_password"]);
+        if (empty($recruiter_password_err) && ($recruiter_password != $recruiter_confirm_password)) {
+            $recruiter_confirm_password_err = "Password did not match.";
+        }
+    }
+
+    // Check input errors before inserting into the database
+    if (empty($company_id_err) && empty($recruiter_name_err) && empty($recruiter_email_err) && empty($recruiter_phone_err) && empty($recruiter_password_err) && empty($recruiter_confirm_password_err)) {
+        // Hash the recruiter password before storing it in the database
+        $hashed_password = password_hash($recruiter_password, PASSWORD_DEFAULT);
+
+        // Insert the recruiter's information into the database
+        $stmt = $db->prepare("INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bindParam(1, $company_id, PDO::PARAM_INT);
+        $stmt->bindParam(2, $recruiter_name, PDO::PARAM_STR);
+        $stmt->bindParam(3, $recruiter_email, PDO::PARAM_STR);
+        $stmt->bindParam(4, $recruiter_phone, PDO::PARAM_STR);
+        $stmt->bindParam(5, $hashed_password, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            // Redirect to the login page after successful registration
+            header("location: login.php");
+            exit;
+        } else {
+            echo "Something went wrong. Please try again later.";
+        }
+    }
+}
 $company_name = $company_email = $company_password = $company_confirm_password = "";
 $company_name_err = $company_email_err = $company_password_err = $company_confirm_password_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate company name
+    if (empty(trim($_POST["company_name"]))) {
+        $company_name_err = "Please enter a company name.";
+    } else {
+        $company_name = trim($_POST["company_name"]);
+    }
 
-    $registration_type = $_POST["registration_type"];
+    // Validate company email
+    if (empty(trim($_POST["company_email"]))) {
+        $company_email_err = "Please enter a company email.";
+    } else {
+        $company_email = trim($_POST["company_email"]);
+    }
 
-    if ($registration_type === "student") {
-        // Validate student registration fields
-        // ... (student registration validation code)
+    // Validate company password
+    if (empty(trim($_POST["company_password"]))) {
+        $company_password_err = "Please enter a password.";
+    } elseif (strlen(trim($_POST["company_password"])) < 6) {
+        $company_password_err = "Password must have at least 6 characters.";
+    } else {
+        $company_password = trim($_POST["company_password"]);
+    }
 
-        if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
-            // Hash the password before storing it in the database
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Check if email already exists in the Applicant table
-            $stmt_check_email = $db->prepare("SELECT COUNT(*) FROM `Applicant` WHERE `email` = ?");
-            $stmt_check_email->bindParam(1, $email, PDO::PARAM_STR);
-            $stmt_check_email->execute();
-            $email_count = $stmt_check_email->fetchColumn();
-
-            if ($email_count > 0) {
-                $email_err = "This email is already registered.";
-            } else {
-                // Insert the student's information into the database
-                $stmt = $db->prepare("INSERT INTO Applicant (username, password, email) VALUES (?, ?, ?)");
-                $stmt->bindParam(1, $username, PDO::PARAM_STR);
-                $stmt->bindParam(2, $hashed_password, PDO::PARAM_STR);
-                $stmt->bindParam(3, $email, PDO::PARAM_STR);
-
-                if ($stmt->execute()) {
-                    // Redirect to the login page after successful registration
-                    header("location: login.php");
-                    exit;
-                } else {
-                    echo "Something went wrong. Please try again later.";
-                }
-            }
+    // Validate company confirm password
+    if (empty(trim($_POST["company_confirm_password"]))) {
+        $company_confirm_password_err = "Please confirm the password.";
+    } else {
+        $company_confirm_password = trim($_POST["company_confirm_password"]);
+        if (empty($company_password_err) && ($company_password != $company_confirm_password)) {
+            $company_confirm_password_err = "Password did not match.";
         }
-    } elseif ($registration_type === "recruiter") {
-        // Validate recruiter registration fields
-        // ... (recruiter registration validation code)
+    }
 
-        if (empty($company_id_err) && empty($recruiter_name_err) && empty($recruiter_email_err) && empty($recruiter_phone_err) && empty($recruiter_password_err) && empty($recruiter_confirm_password_err)) {
-            // Hash the recruiter password before storing it in the database
-            $hashed_password = password_hash($recruiter_password, PASSWORD_DEFAULT);
+    // Check input errors before inserting into the database
+    if (empty($company_name_err) && empty($company_email_err) && empty($company_password_err) && empty($company_confirm_password_err)) {
+        // Hash the company password before storing it in the database
+        $hashed_password = password_hash($company_password, PASSWORD_DEFAULT);
 
-            // Check if email already exists in the Recruiter table
-            $stmt_check_email = $db->prepare("SELECT COUNT(*) FROM `Recruiter` WHERE `email` = ?");
-            $stmt_check_email->bindParam(1, $recruiter_email, PDO::PARAM_STR);
-            $stmt_check_email->execute();
-            $email_count = $stmt_check_email->fetchColumn();
+        // Insert the company's information into the database
+        $stmt = $db->prepare("INSERT INTO Company (name, email, password) VALUES (?, ?, ?)");
+        $stmt->bindParam(1, $company_name, PDO::PARAM_STR);
+        $stmt->bindParam(2, $company_email, PDO::PARAM_STR);
+        $stmt->bindParam(3, $hashed_password, PDO::PARAM_STR);
 
-            if ($email_count > 0) {
-                $recruiter_email_err = "This email is already registered.";
-            } else {
-                // Insert the recruiter's information into the database
-                $stmt = $db->prepare("INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (?, ?, ?, ?, ?)");
-                $stmt->bindParam(1, $company_id, PDO::PARAM_INT);
-                $stmt->bindParam(2, $recruiter_name, PDO::PARAM_STR);
-                $stmt->bindParam(3, $recruiter_email, PDO::PARAM_STR);
-                $stmt->bindParam(4, $recruiter_phone, PDO::PARAM_STR);
-                $stmt->bindParam(5, $hashed_password, PDO::PARAM_STR);
-
-                if ($stmt->execute()) {
-                    // Redirect to the login page after successful registration
-                    header("location: login.php");
-                    exit;
-                } else {
-                    echo "Something went wrong. Please try again later.";
-                }
-            }
-        }
-    } elseif ($registration_type === "company") {
-        // Validate company registration fields
-        // ... (company registration validation code)
-
-        if (empty($company_name_err) && empty($company_email_err) && empty($company_password_err) && empty($company_confirm_password_err)) {
-            // Hash the company password before storing it in the database
-            $hashed_password = password_hash($company_password, PASSWORD_DEFAULT);
-
-            // Check if email already exists in the Company table
-            $stmt_check_email = $db->prepare("SELECT COUNT(*) FROM `Company` WHERE `email` = ?");
-            $stmt_check_email->bindParam(1, $company_email, PDO::PARAM_STR);
-            $stmt_check_email->execute();
-            $email_count = $stmt_check_email->fetchColumn();
-
-            if ($email_count > 0) {
-                $company_email_err = "This email is already registered.";
-            } else {
-                // Insert the company's information into the database
-                $stmt = $db->prepare("INSERT INTO Company (name, email, password) VALUES (?, ?, ?)");
-                $stmt->bindParam(1, $company_name, PDO::PARAM_STR);
-                $stmt->bindParam(2, $company_email, PDO::PARAM_STR);
-                $stmt->bindParam(3, $hashed_password, PDO::PARAM_STR);
-
-                if ($stmt->execute()) {
-                    // Redirect to the login page after successful registration
-                    header("location: login.php");
-                    exit;
-                } else {
-                    echo "Something went wrong. Please try again later.";
-                }
-            }
+        if ($stmt->execute()) {
+            // Redirect to the login page after successful registration
+            header("location: login.php");
+            exit;
+        } else {
+            echo "Something went wrong. Please try again later.";
         }
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -193,7 +265,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="recruiter_email" class="form-control">
-                    <span class="text-danger"><?php echo $recruiter_email_err; ?></span>
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
@@ -219,7 +290,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="student_email" class="form-control">
-                    <span class="text-danger"><?php echo $email_err; ?></span>
                 </div>
                 <!-- Password fields for student -->
                 <div class="form-group">
@@ -241,7 +311,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="company_email" class="form-control">
-                    <span class="text-danger"><?php echo $company_email_err; ?></span>
                 </div>
                 <!-- Password fields for company -->
                 <div class="form-group">
