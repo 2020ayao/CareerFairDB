@@ -6,7 +6,7 @@
 // $username = 'root';                       // or your username
 // $password = 'your-root-password';     
 // $host = 'instance-connection-name';       // e.g., 'cs4750:us-east4:db-demo'; 
-// $dbname = 'your-database-name';           // e.g., 'guestbook';
+// $dbname = 'potd5';           // e.g., 'guestbook';
 // $dsn = "mysql:unix_socket=/cloudsql/instance-connection-name;dbname=your-database-name";
 //       e.g., "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
 // --------- to test, include app.yaml with the following code
@@ -17,11 +17,11 @@
 ////////////////////////////////////////////
 
 /** S23, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
-// $username = 'root';
-// $password = 'your-root-password';
-// $host = 'instance-connection-name';       // e.g., 'cs4750:us-east4:db-demo'; 
-// $dbname = 'your-database-name;;           // e.g., 'guestbook';
-// $dsn = "mysql:host=your-SQL-public-IP-address;dbname=your-database-name";   // connect PHP (XAMPP) to DB (GCP)
+//  $username = 'root';
+//  $password = 'your-root-password';
+//  $host = 'instance-connection-name';       // e.g., 'cs4750:us-east4:db-demo'; 
+//  $dbname = 'potd5';;           // e.g., 'guestbook';
+//  $dsn = "mysql:host=your-SQL-public-IP-address;dbname=potd5";   // connect PHP (XAMPP) to DB (GCP)
 //       e.g., "mysql:host=99.99.999.99;dbname=$dbname";   
 
 // to get public IP addres of the SQL instance, go to GCP SQL overview page
@@ -34,19 +34,19 @@
 ////////////////////////////////////////////
 
 /** S23, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on local XAMPP) **/
-// $username = 'aly3ye';
-// $password = 'password';
-// $host = 'localhost:3306';           // default phpMyAdmin port = 3306
-// $dbname = 'aly3ye';
-// $dsn = "mysql:host=$host;dbname=$dbname";  
+$username = 'jonny_g123';
+$password = 'password';
+$host = 'localhost:3306';           // default phpMyAdmin port = 3306
+$dbname = 'finalproject';
+$dsn = "mysql:host=$host;dbname=$dbname";  
 ////////////////////////////////////////////
 
 /** S23, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on CS server) **/
-$username = 'aly3ye';
-$password = 'password';
-$host = 'mysql01.cs.virginia.edu';
-$dbname = 'aly3ye_a';
-$dsn = "mysql:host=$host;dbname=$dbname";
+// $username = 'your-computingID'; 
+// $password = 'your-mysql-password';
+// $host = 'mysql01.cs.virginia.edu';
+// $dbname = 'your-computingID';
+// $dsn = "mysql:host=$host;dbname=$dbname";
 ////////////////////////////////////////////
 
 // To find a hostname, access phpMyAdmin
@@ -79,19 +79,22 @@ $dsn = "mysql:host=$host;dbname=$dbname";
 
 
 /** connect to the database **/
-try {
-   //  $db = new PDO("mysql:host=$hostname;dbname=db-demo", $username, $password);
+try 
+{
+//  $db = new PDO("mysql:host=$hostname;dbname=potd5", $username, $password);
    $db = new PDO($dsn, $username, $password);
-
+   
    // dispaly a message to let us know that we are connected to the database 
    echo "<p>You are connected to the database: $dsn</p>";
-} catch (PDOException $e)     // handle a PDO exception (errors thrown by the PDO library)
+}
+catch (PDOException $e)     // handle a PDO exception (errors thrown by the PDO library)
 {
    // Call a method from any object, use the object's name followed by -> and then method's name
    // All exception objects provide a getMessage() method that returns the error message 
-   $error_message = $e->getMessage();
+   $error_message = $e->getMessage();        
    echo "<p>An error occurred while connecting to the database: $error_message </p>";
-} catch (Exception $e)       // handle any type of exception
+}
+catch (Exception $e)       // handle any type of exception
 {
    $error_message = $e->getMessage();
    echo "<p>Error message: $error_message </p>";
