@@ -25,6 +25,11 @@ if (isset($_GET['logout'])) {
   header("location: login.php");
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdrawBtn'])) {
+    $jobIdToWithdraw = $_POST['job_to_withdraw'];
+    withdrawApplication($_SESSION['user_id'], $jobIdToWithdraw);
+    $appliedJobs = getAllApplied(); // Refresh the list of applied jobs after withdrawal
+}
 
 $list_of_jobs_applied = getAllApplied();
 
@@ -70,7 +75,13 @@ $list_of_jobs_applied = getAllApplied();
      <td><?php echo $applies['title']; ?></td>   <!-- column name --> 
      <td><?php echo $applies['industry']; ?></td> 
      <td><?php echo $applies['pay']; ?></td> 
-     <td><?php echo $applies['company']; ?></td>        
+     <td><?php echo $applies['company']; ?></td>   
+     <td>
+        <form action="applied.php" method="post">
+            <input type="submit" value="Withdraw" name="withdrawBtn" class="btn btn-danger" />
+            <input type="hidden" name="job_to_withdraw" value="<?php echo $applies['jobID']; ?>" />
+        </form>
+     </td>     
   </tr>
 <?php endforeach; ?>
 </table>
