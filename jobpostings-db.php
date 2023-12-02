@@ -37,4 +37,32 @@ function hasUserApplied($userId, $jobId)
     return ($count > 0);
 }
 
+function getCompanyName($companyId)
+{
+    global $db;
+    $query = "SELECT name FROM Company WHERE companyID = :companyID";
+    $statement = $db->prepare($query);
+    $statement->bindParam(':companyID', $companyId);
+    $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    $statement->closeCursor();
+
+    // Return the company name
+    return $result['name'];
+}
+
+function getJobsByCompany($companyName)
+{
+    global $db;
+    $query = "SELECT * FROM Job WHERE company = :companyName";
+    $statement = $db->prepare($query);
+    $statement->bindParam(':companyName', $companyName);
+    $statement->execute();
+    $jobs = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement->closeCursor();
+
+    return $jobs;
+}
+?>
+
 

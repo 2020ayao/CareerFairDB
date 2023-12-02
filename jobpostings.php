@@ -2,7 +2,6 @@
 require("connect-db.php");
 require("jobpostings-db.php");
 
-
 // Starting the session, to use and
 // store data in session variable
 session_start();
@@ -10,7 +9,7 @@ session_start();
 // If the session variable is empty, this 
 // means the user is yet to login
 // User will be sent to 'login.php' page
-// to allow the user to login
+// to allow the user to log in
 if (!isset($_SESSION['user_id'])) {
   $_SESSION['msg'] = "You have to log in first";
   header('location: login.php');
@@ -26,12 +25,19 @@ if (isset($_GET['logout'])) {
   header("location: login.php");
 }
 
-$list_of_jobs = getAllJobs();
+// Assuming you have a user_type in your session variable
+$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : '';
+$userID = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
+
+// Retrieve the name of the company based on user_id
+$companyName = ($userType === 'company') ? getCompanyName($userID) : '';
+
+$list_of_jobs = ($userType === 'company') ? getJobsByCompany($companyName) : getAllJobs();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!empty($_POST['applyBtn'])) {
     applyToJob($_SESSION['user_id'], $_POST['job_to_apply']);
-    $list_of_jobs = getAllJobs();
+    $list_of_jobs = ($userType === 'company') ? getJobsByCompany($companyName) : getAllJobs();
   }
 }
 ?>
@@ -108,16 +114,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- CDN for JS bootstrap -->
     <!-- you may also use JS bootstrap to make the page dynamic -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"></script>
-
-    <!-- for local -->
-    <!-- <script src="your-js-file.js"></script> -->
-
-  </div>
-
-  <?php include("footer.html"); ?>
-</body>
-
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3
