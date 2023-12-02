@@ -46,7 +46,7 @@ $applicants = getJobApplicants($jobID);
 <body>
     <?php include("header.php"); ?>
     <div class="container">
-    <h1>Job Applicants</h1>
+    <h1>Job Applicants for <?php echo $job['title']; ?></h1>
 
     <hr />
     <div class="row justify-content-center">
