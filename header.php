@@ -19,6 +19,7 @@ require("header-db.php");
       } else {
         echo '<span class="nav-link">Not logged in</span>';
       }
+
       ?>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
         aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,17 +30,36 @@ require("header-db.php");
           <li class="nav-item">
             <a class="nav-link" href="jobpostings.php">Jobs</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="recruiter.php">Recruiters</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="career_fair.php">Career Fairs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="applied.php">Jobs Applied</a>
-          </li>
-          <a href="logout.php" class="btn btn-danger ml-3">Sign Out</a>
+          <?php
+          // Conditionally show or hide "Recruiters" based on user type
+          if ($_SESSION['user_type'] === 'applicant' || $_SESSION['user_type'] === 'recruiter' || $_SESSION['user_type'] === 'company') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="recruiter.php">Recruiters</a>
+                  </li>';
+          }
 
+          // Conditionally show or hide "Career Fairs" based on user type
+          if ($_SESSION['user_type'] === 'applicant' || $_SESSION['user_type'] === 'recruiter' || $_SESSION['user_type'] === 'company') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="career_fair.php">Career Fairs</a>
+                  </li>';
+          }
+
+          // Conditionally show or hide "Jobs Applied" based on user type
+          if ($_SESSION['user_type'] === 'applicant') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="applied.php">Jobs Applied</a>
+                  </li>';
+          }
+
+          if ($_SESSION['user_type'] === 'company') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="createjob.php">Create Job Posting</a>
+                  </li>';
+          }
+          ?>
+
+          <a href="logout.php" class="btn btn-danger ml-3">Sign Out</a>
         </ul>
       </div>
     </div>
