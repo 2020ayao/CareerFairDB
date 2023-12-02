@@ -86,7 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <?php include("header.php"); ?>
     <div class="container">
-        <h2>Create Job</h2>
+    <h1>Create Job</h1>
+
+    <hr />
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Title</label>
@@ -94,6 +96,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     value="<?php echo $title; ?>">
                 <span class="invalid-feedback"><?php echo $title_err; ?></span>
             </div>
+
+            <br>
+
             <div class="form-group">
                 <label>Industry</label>
                 <input type="text" name="industry"
@@ -101,17 +106,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     value="<?php echo $industry; ?>">
                 <span class="invalid-feedback"><?php echo $industry_err; ?></span>
             </div>
+
+            <br>
+
             <div class="form-group">
                 <label>Pay</label>
                 <input type="text" name="pay" class="form-control <?php echo (!empty($pay_err)) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $pay; ?>">
                 <span class="invalid-feedback"><?php echo $pay_err; ?></span>
             </div>
+
+            <br>
+            
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Create Job" name="createBtn">
             </div>
         </form>
     </div>
 </body>
+<?php include("footer.html"); ?>
 
 </html>

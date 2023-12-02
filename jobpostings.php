@@ -111,9 +111,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     } elseif ($userType === 'company') {
                         // If the user is a company, show the Delete button
                         echo '
-                            <form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post">
-                                <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger" />
-                                <input type="hidden" name="job_to_delete" value="' . $job['jobID'] . '" />
+                            <form action="jobapplicants.php" method="get">
+                                <div class="btn-group" role="group" aria-label="Job Actions">
+                                    <a href="jobapplicants.php?jobID=' . $job['jobID'] . '" class="btn btn-dark">View Applicants</a>
+                                    <div style="margin-right: 10px;"></div>
+                                    <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger" />
+                                    <input type="hidden" name="job_to_delete" value="' . $job['jobID'] . '" />
+                                </div>
                             </form>
                         ';
                     }
@@ -121,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </td>
             </tr>
         <?php endforeach ?>
+        <?php include("footer.html"); ?>
       </table>
     </div>
 
