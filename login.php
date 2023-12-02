@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
                 $_SESSION['email'] = $email;
                 $_SESSION['user_id'] = $fetch_company['companyID'];
                 $_SESSION['user_type'] = 'company';
-                header("location: career_fair.php");
+                header("location: jobpostings.php");
                 exit;
             } else {
                 $login_err = 'Password incorrect!';

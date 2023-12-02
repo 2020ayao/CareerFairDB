@@ -38,7 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!empty($_POST['applyBtn'])) {
     applyToJob($_SESSION['user_id'], $_POST['job_to_apply']);
     $list_of_jobs = ($userType === 'company') ? getJobsByCompany($companyName) : getAllJobs();
-  }
+  } elseif (!empty($_POST['deleteBtn'])) {
+    // Check if the user type is 'company' and process the delete action
+    if ($userType === 'company') {
+        deleteJob($_POST['job_to_delete']);
+        $list_of_jobs = getJobsByCompany($companyName);
+    }
+}
 }
 ?>
 
@@ -75,40 +81,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <th>&nbsp;</th>
           </tr>
         </thead>
-        <?php foreach ($list_of_jobs as $job): ?>
-          <tr>
-            <td><?php echo $job['title']; ?></td>
-            <td><?php echo $job['industry']; ?></td>
-            <td><?php echo $job['pay']; ?></td>
-            <td><?php echo $job['company']; ?></td>
-            <td>
-              <?php
-              // Check if the user has already applied to this job
-              $hasApplied = hasUserApplied($_SESSION['user_id'], $job['jobID']);
+        <?php
+          foreach ($list_of_jobs as $job): ?>
+            <tr>
+                <td><?php echo $job['title']; ?></td>
+                <td><?php echo $job['industry']; ?></td>
+                <td><?php echo $job['pay']; ?></td>
+                <td><?php echo $job['company']; ?></td>
+                <td>
+                    <?php
+                    // Check the user type
+                    $userType = $_SESSION['user_type'];
 
-              // Check the user type
-              $userType = $_SESSION['user_type'];
+                    if ($userType === 'applicant') {
+                        // Check if the user has already applied to this job
+                        $hasApplied = hasUserApplied($_SESSION['user_id'], $job['jobID']);
 
-              if ($userType === 'applicant') {
-                // If the user is an applicant, show the Apply button
-                if ($hasApplied) {
-                  echo '<button class="btn btn-secondary" disabled>Applied already</button>';
-                } else {
-                  echo '
-                    <form action="jobpostings.php" method="post">
-                        <input type="submit" value="Apply" name="applyBtn" class="btn btn-success" />
-                        <input type="hidden" name="job_to_apply" value="' . $job['jobID'] . '" />
-                    </form>
-                  ';
-                }
-              } else {
-                // If the user is a recruiter or company, show a message
-                echo '<span class="text-muted">Recruiters and Companies cannot apply to jobs</span>';
-              }
-              ?>
-            </td>
-          </tr>
-        <?php endforeach; ?>
+                        // If the user is an applicant, show the Apply button
+                        if ($hasApplied) {
+                            echo '<button class="btn btn-secondary" disabled>Applied already</button>';
+                        } else {
+                            echo '
+                                <form action="jobpostings.php" method="post">
+                                    <input type="submit" value="Apply" name="applyBtn" class="btn btn-success" />
+                                    <input type="hidden" name="job_to_apply" value="' . $job['jobID'] . '" />
+                                </form>
+                            ';
+                        }
+                    } elseif ($userType === 'company') {
+                        // If the user is a company, show the Delete button
+                        echo '
+                            <form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post">
+                                <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger" />
+                                <input type="hidden" name="job_to_delete" value="' . $job['jobID'] . '" />
+                            </form>
+                        ';
+                    }
+                    ?>
+                </td>
+            </tr>
+        <?php endforeach ?>
       </table>
     </div>
 

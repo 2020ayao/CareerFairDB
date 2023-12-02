@@ -63,6 +63,22 @@ function getJobsByCompany($companyName)
 
     return $jobs;
 }
+
+function deleteJob($jobID)
+{
+    global $db;
+    $appliesQuery = "DELETE FROM Applies WHERE jobID = :jobID";
+    $appliesStatement = $db->prepare($appliesQuery);
+    $appliesStatement->bindParam(':jobID', $jobID);
+    $appliesStatement->execute();
+    $appliesStatement->closeCursor();
+    
+    $query = "DELETE FROM Job WHERE jobID = :jobID";
+    $statement = $db->prepare($query);
+    $statement->bindParam(':jobID', $jobID);
+    $statement->execute();
+    $statement->closeCursor();
+}
 ?>
 
 
