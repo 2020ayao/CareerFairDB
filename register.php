@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // Redirect to the login page after successful registration
-            header("location: login.php");
+            header("location: jobpostings.php");
             exit;
         } else {
             echo "Something went wrong. Please try again later.";
@@ -245,7 +245,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="form-group">
                 <label>Registration Type</label>
-                <select name="registration_type" id="registrationType" class="form-control" onchange="toggleAdditionalFields()">
+                <select name="registration_type" id="registrationType" class="form-control"
+                    onchange="toggleAdditionalFields()">
                     <option value="student">Student</option>
                     <option value="recruiter">Recruiter</option>
                     <option value="company">Company</option>
