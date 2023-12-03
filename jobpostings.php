@@ -36,6 +36,13 @@ $companyName = ($userType === 'company') ? getCompanyName($userID) : '';
 
 $list_of_jobs = ($userType === 'company') ? getJobsByCompany($companyName) : getAllJobs();
 
+
+if (isset($_GET['sortPayAsc']) && $_GET['sortPayAsc'] == 'on') {
+  usort($list_of_jobs, function ($a, $b) {
+    return $b['pay'] <=> $a['pay'];
+  });
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!empty($_POST['applyBtn'])) {
     applyToJob($_SESSION['user_id'], $_POST['job_to_apply']);
@@ -71,6 +78,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h1>Job Postings</h1>
 
     <hr />
+
+    <!-- Bootstrap styled checkbox for sorting -->
+    <div class="row mb-3">
+      <div class="col-auto">
+        <form action="jobpostings.php" method="get" class="form-inline">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="sortPayAsc" name="sortPayAsc"
+              onchange="this.form.submit()" <?php echo isset($_GET['sortPayAsc']) ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="sortPayAsc">Sort by Pay in Highest Order</label>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
     <div class="row justify-content-center">
       <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
         <thead>
@@ -79,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <th width="25%">Industry
             <th width="20%">Pay
             <th width="30%">Company
-            <th>&nbsp;</th>
+            <th width="30%">Action</th>
             <th>&nbsp;</th>
           </tr>
         </thead>

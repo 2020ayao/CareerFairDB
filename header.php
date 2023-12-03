@@ -39,9 +39,16 @@ require("header-db.php");
           }
 
           // Conditionally show or hide "Career Fairs" based on user type
-          if ($_SESSION['user_type'] === 'applicant' || $_SESSION['user_type'] === 'recruiter' || $_SESSION['user_type'] === 'company') {
+          if ($_SESSION['user_type'] === 'applicant') {
             echo '<li class="nav-item">
-                    <a class="nav-link" href="career_fair.php">Career Fairs</a>
+                    <a class="nav-link" href="careerFair.php">Career Fairs</a>
+                  </li>';
+          }
+
+          // Conditionally show or hide "Career Fairs Attending" based on user type
+          if ($_SESSION['user_type'] === 'applicant') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="careerFairApplied.php">CF Attendance</a>
                   </li>';
           }
 
