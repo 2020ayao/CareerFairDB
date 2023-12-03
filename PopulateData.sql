@@ -1,8 +1,8 @@
 
-INSERT INTO Applicant(username, password, email) VALUES ('Jonathan Guo', 'password', 'test@gmail.com', 4.0);
-INSERT INTO Applicant(username, password, email) VALUES ('Adam Yao','password', 'test1@gmail.com', 3.9);
-INSERT INTO Applicant(username, password, email)  VALUES ('Yumi Kim', 'password', 'test2@gmail.com', 3.8);
-INSERT INTO Applicant(username, password, email) VALUES ('Greg Cho', 'password', 'test3@gmail.com', 3.7);
+INSERT INTO Applicant(username, password, email, gpa) VALUES ('Jonathan Guo', 'password', 'test@gmail.com', 4.0);
+INSERT INTO Applicant(username, password, email, gpa) VALUES ('Adam Yao','password', 'test1@gmail.com', 3.9);
+INSERT INTO Applicant(username, password, email, gpa)  VALUES ('Yumi Kim', 'password', 'test2@gmail.com', 3.8);
+INSERT INTO Applicant(username, password, email, gpa) VALUES ('Greg Cho', 'password', 'test3@gmail.com', 3.7);
 
 
 INSERT INTO Company (name, password, email) VALUES ('Google', 'password', '123@gmail.com');

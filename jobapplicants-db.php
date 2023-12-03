@@ -14,7 +14,7 @@ function getJobDetails($jobID)
 function getJobApplicants($jobID)
 {
     global $db;
-    $query = "SELECT A.applicantID, AP.username, AP.email
+    $query = "SELECT A.applicantID, AP.username, AP.email, AP.gpa
               FROM Applies AS A
               JOIN Applicant AS AP ON A.applicantID = AP.applicantID
               WHERE A.jobID = :jobID";

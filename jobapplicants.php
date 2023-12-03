@@ -8,16 +8,16 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    $_SESSION['msg'] = "You have to log in first";
-    header('location: login.php');
-    exit();
+  $_SESSION['msg'] = "You have to log in first";
+  header('location: login.php');
+  exit();
 }
 
 // Check if the user is a company
 if ($_SESSION['user_type'] !== 'company') {
-    // Redirect to an appropriate page or show an error message
-    header('location: error.php');
-    exit();
+  // Redirect to an appropriate page or show an error message
+  header('location: error.php');
+  exit();
 }
 
 // Get the job ID from the request
@@ -44,9 +44,11 @@ $applicants = getJobApplicants($jobID);
 </head>
 
 <body>
-    <?php include("header.php"); ?>
-    <div class="container">
-    <h1>Job Applicants for <?php echo $job['title']; ?></h1>
+  <?php include("header.php"); ?>
+  <div class="container">
+    <h1>Job Applicants for
+      <?php echo $job['title']; ?>
+    </h1>
 
     <hr />
     <div class="row justify-content-center">
@@ -55,18 +57,26 @@ $applicants = getJobApplicants($jobID);
           <tr style="background-color:#B0B0B0">
             <th width="30%">Username
             <th width="25%">Email
-            <!-- <th width="20%">Pay
+            <th width="25%">GPA
+              <!-- <th width="20%">Pay
             <th width="30%">Company -->
             <th>&nbsp;</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <?php
-          foreach ($applicants as $applicant): ?>
-            <tr>
-                <td><?php echo $applicant['username']; ?></td>
-                <td><?php echo $applicant['email']; ?></td>
-            </tr>
+        foreach ($applicants as $applicant): ?>
+          <tr>
+            <td>
+              <?php echo $applicant['username']; ?>
+            </td>
+            <td>
+              <?php echo $applicant['email']; ?>
+            </td>
+            <td>
+              <?php echo $applicant['gpa']; ?>
+            </td>
+          </tr>
         <?php endforeach ?>
         <?php include("footer.html"); ?>
       </table>
