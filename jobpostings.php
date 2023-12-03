@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <th width="25%">Industry
             <th width="20%">Pay
             <th width="30%">Company
-            <th width="30%">Action</th>
+              <!-- <th width="30%">Action</th> -->
             <th>&nbsp;</th>
           </tr>
         </thead>
