@@ -44,8 +44,8 @@ INSERT INTO Hires VALUES (2 ,2);
 INSERT INTO Reaches_out VALUES (1 ,3);
 INSERT INTO Reaches_out VALUES (2 ,3);
 
-INSERT INTO Attends VALUES (1 ,1, 2);
-INSERT INTO Attends VALUES (2 ,1, 1);
+INSERT INTO Attends VALUES (1 ,1);
+INSERT INTO Attends VALUES (2 ,1);
 
 
 
