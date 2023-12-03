@@ -2,6 +2,8 @@
 // Include necessary files and functions
 require("connect-db.php");
 require("jobapplicants-db.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
 // Start the session
 session_start();
@@ -76,12 +78,25 @@ $applicants = getJobApplicants($jobID);
             <td>
               <?php echo $applicant['gpa']; ?>
             </td>
+            <td>
+              <button class="hire-toggle btn btn-primary" data-hired="false">Hire</button>
+            </td>
           </tr>
         <?php endforeach ?>
         <?php include("footer.html"); ?>
       </table>
     </div>
-
+    <script>
+      // JavaScript to handle button click
+      document.querySelectorAll('.hire-toggle').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var isHired = this.getAttribute('data-hired') === 'true';
+          this.textContent = isHired ? 'Hire' : 'UnHire';
+          this.setAttribute('data-hired', !isHired);
+          // You can also add AJAX call here to update the status in your database
+        });
+      });
+    </script>
 
     <!-- Add your JavaScript or link Bootstrap JS if needed -->
 </body>

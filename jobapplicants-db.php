@@ -26,4 +26,31 @@ function getJobApplicants($jobID)
     return $applicants;
 }
 
+function isHired($companyID, $applicantID)
+{
+    global $db;
+    $query = "SELECT COUNT(*) FROM Hires WHERE applicantID = :user_id AND companyID = :company_id";
+    $statement = $db->prepare($query);
+    $statement->bindParam(':user_id', $applicantID);
+    $statement->bindParam(':company_id', $companyID);
+    $statement->execute();
+    $count = $statement->fetchColumn();
+    $statement->closeCursor();
+    return ($count > 0);
+}
+
+function hireApplicant($companyID, $applicantID)
+{
+    global $db;
+    $query = "insert into Hires values (:companyID , :jobID)";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':applicantID', $applicantID);
+    $statement->bindValue(':jobID', $companyID);
+
+
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 ?>

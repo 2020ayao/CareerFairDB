@@ -11,8 +11,8 @@ session_start();
 // The user will be sent to 'login.php' page
 // to allow the user to log in
 if (!isset($_SESSION['user_id'])) {
-  $_SESSION['msg'] = "You have to log in first";
-  header('location: login.php');
+    $_SESSION['msg'] = "You have to log in first";
+    header('location: login.php');
 }
 
 // Logout button will destroy the session, and
@@ -20,9 +20,9 @@ if (!isset($_SESSION['user_id'])) {
 // The user will be headed to 'login.php'
 // after logging out
 if (isset($_GET['logout'])) {
-  session_destroy();
-  unset($_SESSION['user_id']);
-  header("location: login.php");
+    session_destroy();
+    unset($_SESSION['user_id']);
+    header("location: login.php");
 }
 
 
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!empty($_POST['createBtn'])) {
-        $success = createJob($title, $industry, $pay, $companyName);
+        $success = createJob($title, $industry, $pay, $companyName, $companyID);
         if ($success) {
             // Redirect to jobpostings.php
             header("location: jobpostings.php");
@@ -73,28 +73,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="your name">
-  <meta name="description" content="include some description about your page">  
-  <title>Recruiters</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">  
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="your name">
+    <meta name="description" content="include some description about your page">
+    <title>Recruiters</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
 </head>
 
 <body>
-<?php include("header.php"); ?>
+    <?php include("header.php"); ?>
     <div class="container">
-    <h1>Create Job</h1>
+        <h1>Create Job</h1>
 
-    <hr />
+        <hr />
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" name="title" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>"
+                <input type="text" name="title"
+                    class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $title; ?>">
-                <span class="invalid-feedback"><?php echo $title_err; ?></span>
+                <span class="invalid-feedback">
+                    <?php echo $title_err; ?>
+                </span>
             </div>
 
             <br>
@@ -104,7 +108,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" name="industry"
                     class="form-control <?php echo (!empty($industry_err)) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $industry; ?>">
-                <span class="invalid-feedback"><?php echo $industry_err; ?></span>
+                <span class="invalid-feedback">
+                    <?php echo $industry_err; ?>
+                </span>
             </div>
 
             <br>
@@ -113,11 +119,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label>Pay</label>
                 <input type="text" name="pay" class="form-control <?php echo (!empty($pay_err)) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $pay; ?>">
-                <span class="invalid-feedback"><?php echo $pay_err; ?></span>
+                <span class="invalid-feedback">
+                    <?php echo $pay_err; ?>
+                </span>
             </div>
 
             <br>
-            
+
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Create Job" name="createBtn">
             </div>

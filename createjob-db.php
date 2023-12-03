@@ -13,16 +13,17 @@ function getCompanyName($companyId)
     return $result['name'];
 }
 
-function createJob($title, $industry, $pay, $company)
+function createJob($title, $industry, $pay, $company, $companyID)
 {
     global $db;
-    $query = "insert into Job (title, industry, pay, company) values (:title, :industry, :pay, :company)";
-  
+    $query = "insert into Job (title, industry, pay, company, companyID) values (:title, :industry, :pay, :company, :companyID)";
+
     $statement = $db->prepare($query);
     $statement->bindValue(':title', $title);
     $statement->bindValue(':industry', $industry);
     $statement->bindValue(':pay', $pay);
     $statement->bindValue(':company', $company);
+    $statement->bindValue(':companyID', $companyID);
     $success = $statement->execute();
     $statement->closeCursor();
 

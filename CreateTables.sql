@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS Job (
    industry varchar(30) NOT NULL,
    pay int NOT NULL,
    company varchar(30) NOT NULL,
+   companyID int NOT NULL,
+   FOREIGN KEY (companyID) REFERENCES Company(companyID),
    PRIMARY KEY (jobID)
 ); 
 
