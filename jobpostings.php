@@ -2,6 +2,8 @@
 require("connect-db.php");
 require("jobpostings-db.php");
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 // Starting the session, to use and
 // store data in session variable
 session_start();
@@ -81,6 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <th>&nbsp;</th>
           </tr>
         </thead>
+        <form method="post">
+    <label for="checkbox_order" style="display: block; margin-bottom: 5px;">Order in descending order by Pay</label>
+    <input type="checkbox" id="checkbox_order" name="checkbox_order" style="display: block; margin-bottom: 5px;">
+    <input type="submit" value="Submit" style="width: 300px; height: 30px; font-size: 12px;">
+</form>
+
         <?php
           foreach ($list_of_jobs as $job): ?>
             <tr>

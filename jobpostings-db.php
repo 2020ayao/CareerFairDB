@@ -1,15 +1,24 @@
 <?php
-
-function getAllJobs()
-{
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+function getAllJobs() {
   global $db;
-  $query = "select * from Job";
+  
+  // Check if the checkbox is checked
+  if(isset($_POST['checkbox_order']) && $_POST['checkbox_order'] == '1') {
+      $query = "SELECT * FROM Job ORDER BY Pay DESC"; // Order by Pay if checkbox is checked
+  } else {
+      $query = "SELECT * FROM Job"; // Do not order by Pay if checkbox is not checked
+  }
+
   $statement = $db->prepare($query);
   $statement->execute();
-  $results = $statement->fetchAll();   // fetch()
+  $results = $statement->fetchAll(); // fetchAll() is used to get all records
   $statement->closeCursor();
+
   return $results;
 }
+
 
 function applyToJob($applicantID, $jobID)
 {
