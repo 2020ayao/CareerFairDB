@@ -3,9 +3,12 @@ session_start();
 require("connect-db.php");
 require("register-db.php");
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 // Initialize variables
-$username = $email = $password = $confirm_password = "";
-$username_err = $email_err = $password_err = $confirm_password_err = "";
+$username = $email = $password = $confirm_password = $studentGPA = "";
+$username_err = $email_err = $password_err = $confirm_password_err = $studentGPA_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate username
@@ -20,6 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email_err = "Please enter an email.";
     } else {
         $email = trim($_POST["student_email"]);
+    }
+
+    // Validate GPA
+    if (empty(trim($_POST["studentGPA"]))) {
+        $studentGPA_err = "Please enter your GPA (0.0-4.0)";
+    } else {
+        $studentGPA = trim($_POST["studentGPA"]);
     }
 
     // Validate password
@@ -42,17 +52,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check input errors before inserting into the database
-    if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
+    if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($studentGPA_err)) {
         // Hash the password before storing it in the database
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert the student's information into the database
-        $stmt = $db->prepare("INSERT INTO Applicant (username, password, email) VALUES (?, ?, ?)");
-        $stmt->bindParam(1, $username, PDO::PARAM_STR);
-        $stmt->bindParam(2, $hashed_password, PDO::PARAM_STR);
-        $stmt->bindParam(3, $email, PDO::PARAM_STR);
 
-        if ($stmt->execute()) {
+        // $stmt = $db->prepare("INSERT INTO Applicant (username, password, email) VALUES (?, ?, ?)");
+        // $stmt->bindParam(1, $username, PDO::PARAM_STR);
+        // $stmt->bindParam(2, $hashed_password, PDO::PARAM_STR);
+        // $stmt->bindParam(3, $email, PDO::PARAM_STR);
+        $res = registerApplicant($username, $email, $hashed_password, $studentGPA);
+
+        if ($res) {
             // Redirect to the login page after successful registration
             header("location: login.php");
             exit;
@@ -245,7 +257,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="form-group">
                 <label>Registration Type</label>
-                <select name="registration_type" id="registrationType" class="form-control" onchange="toggleAdditionalFields()">
+                <select name="registration_type" id="registrationType" class="form-control"
+                    onchange="toggleAdditionalFields()">
                     <option value="student">Student</option>
                     <option value="recruiter">Recruiter</option>
                     <option value="company">Company</option>
@@ -290,6 +303,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="student_email" class="form-control">
+                </div>
+                <!-- GPA field student -->
+                <div class="form-group">
+                    <label>GPA</label>
+                    <input type="studentGPA" name="studentGPA" class="form-control">
                 </div>
                 <!-- Password fields for student -->
                 <div class="form-group">

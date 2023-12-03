@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS Applicant (
    username varchar(30) NOT NULL,
    password varchar(61) NOT NULL,
    email varchar(50) NOT NULL,
+   gpa float NOT NULL,
    PRIMARY KEY (applicantID)
    -- contact_phone int NOT NULL,
    -- gpa float NOT NULL,  
