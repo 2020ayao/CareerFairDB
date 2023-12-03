@@ -79,7 +79,10 @@ $applicants = getJobApplicants($jobID);
               <?php echo $applicant['gpa']; ?>
             </td>
             <td>
-              <button class="hire-toggle btn btn-primary" data-hired="false">Hire</button>
+              <button class="hire-toggle btn btn-primary" data-hired="false"
+                data-applicant-id="<?php echo $applicant['applicantID']; ?>"
+                data-company-id="<?php echo $_SESSION['user_id']; ?>">Hire</button>
+
             </td>
           </tr>
         <?php endforeach ?>
@@ -87,16 +90,31 @@ $applicants = getJobApplicants($jobID);
       </table>
     </div>
     <script>
-      // JavaScript to handle button click
       document.querySelectorAll('.hire-toggle').forEach(function (button) {
         button.addEventListener('click', function () {
           var isHired = this.getAttribute('data-hired') === 'true';
+          var applicantID = this.getAttribute('data-applicant-id');
+          var companyID = this.getAttribute('data-company-id');
+
+          // Update the button text and attribute
           this.textContent = isHired ? 'Hire' : 'UnHire';
           this.setAttribute('data-hired', !isHired);
-          // You can also add AJAX call here to update the status in your database
+
+          // AJAX request to update the hiring status
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "hireApplicant.php", true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              alert(xhr.responseText);
+            }
+          };
+          var hiringStatus = !isHired; // The new status after button click
+          xhr.send("applicantID=" + applicantID + "&companyID=" + companyID + "&hiringStatus=" + hiringStatus);
         });
       });
     </script>
+
 
     <!-- Add your JavaScript or link Bootstrap JS if needed -->
 </body>
