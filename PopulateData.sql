@@ -16,9 +16,9 @@ INSERT INTO Job (title, industry, pay, company) VALUES ('New Graduate Business A
 INSERT INTO Job (title, industry, pay, company) VALUES ('Project Manager I', 'Engineering', 120000, 'Microsoft');
 INSERT INTO Job (title, industry, pay, company) VALUES ('Associate Consultant', 'Consulting', 75000, 'EY');
 
-INSERT INTO Recruiter (companyID, name, contact_email, contact_phone) VALUES (1, 'Lauren Cox', 'laurencox@capitalone.com', '7034567891');
-INSERT INTO Recruiter (companyID, name, contact_email, contact_phone) VALUES (2, 'Morgan Quencia', 'morganquencia@bloomberg.com', '5713466738');
-INSERT INTO Recruiter (companyID, name, contact_email, contact_phone) VALUES (3, 'Kelly Clarkson', 'kellyclarkson@google.com', '7036567383');
+INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (1, 'Lauren Cox', 'laurencox@capitalone.com', '7034567891', "password");
+INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (2, 'Morgan Quencia', 'morganquencia@bloomberg.com', '5713466738', "password");
+INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (3, 'Kelly Clarkson', 'kellyclarkson@google.com', '7036567383', "password");
 
 INSERT INTO Career_fair VALUES (1 ,'Engineering', '9/14/2023', 'Newcomb Hall');
 INSERT INTO Career_fair VALUES (2 ,'All Industries', '10/25/2023', 'Newcomb Hall');
