@@ -59,6 +59,14 @@ require("header-db.php");
                   </li>';
           }
 
+          // Conditionally show or hide "Applicants" based on user type == Recruiter
+          if ($_SESSION['user_type'] === 'recruiter') {
+            echo '<li class="nav-item">
+                    <a class="nav-link" href="applicants.php">Applicants</a>
+                  </li>';
+          }
+
+
           if ($_SESSION['user_type'] === 'company') {
             echo '<li class="nav-item">
                     <a class="nav-link" href="createjob.php">Create Job Posting</a>
