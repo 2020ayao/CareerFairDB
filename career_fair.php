@@ -2,6 +2,18 @@
 require("connect-db.php");
 require("career_fair-db.php");
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+function console_log($output, $with_script_tags = true) {
+  $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+  ');';
+  if ($with_script_tags) {
+  $js_code = '<script>' . $js_code . '</script>';
+  }
+  echo $js_code;
+  }
+
 // Starting the session, to use and
 // store data in session variable
 session_start();
@@ -25,7 +37,9 @@ if (isset($_GET['logout'])) {
   header("location: login.php");
 }
 
-
+//get user ID
+$userID = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
+//console_log($userID)
 $list_of_career_fair_events = getAllCareerFairEvents();
 //need to fix this
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -34,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    {
     // ALL WE NEED LEFT HERE IS TO INCLUDE THE APPLICANT ID HERE TOO IN ARGUMENT OF THIS FUNCTION
     // MISSING THE FIRST ARGUMENT OF APPLICANT ID
-    attendCareerFairEvent($_POST['applicantID'], $_POST['career_fair_ID'], $_POST['recruiterID']);
-      $list_of_jobs = getAllJobs();
+    attendCareerFairEvent($_SESSION['user_id'], $_POST['event_to_attend']);
+      $list_of_career_fair_events = getAllCareerFairEvents();
    }
 }
 
@@ -74,22 +88,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <th>&nbsp;</th>
   </tr>
   </thead>
+  
 
 
 <?php foreach ($list_of_career_fair_events as $career_fair_events): ?>
   <tr>
+    
      <td><?php echo $career_fair_events['careerFairID']; ?></td>   <!-- column name --> 
      <td><?php echo $career_fair_events['industry']; ?></td>        
      <td><?php echo $career_fair_events['date']; ?></td>
      <td><?php echo $career_fair_events['Location']; ?></td>   
+
      <td>
-      <form action="simpleform.php" method="post">
-         <input type="submit" value="Attend" name="AttendBtn" class="btn btn-success"  />
-         <input type="hidden" name="career_fair_ID"  
-                 value="<?php echo $job['careerFairID']; ?>" 
-          />
-      </form>
-     </td> 
+        <?php
+        // Check the user type
+        $userType = $_SESSION['user_type'];
+
+    
+        // Check if the user is already attending the career event
+        $isAttending = isUserAttending($_SESSION['user_id'], $career_fair_events['careerFairID']);
+
+        // show the attend button
+        if ($isAttending) {
+            echo '<button class="btn btn-secondary" disabled>Already Attending</button>';
+        } else {
+            echo '
+                <form action="career_fair.php" method="post">
+                    <input type="submit" value="Attend" name="attendBtn" class="btn btn-success" />
+                    <input type="hidden" name="event_to_attend" value="' . $career_fair_events['careerFairID'] . '" />
+                </form>
+            ';
+        }
+        
+      ?>
+    </td>
   </tr>
 <?php endforeach; ?>
 </table>
