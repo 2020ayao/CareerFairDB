@@ -10,11 +10,11 @@ INSERT INTO Company (name, password, email) VALUES ('Microsoft', 'password', '22
 INSERT INTO Company (name, password, email) VALUES ('Capital One', 'password', '323@gmail.com');
 INSERT INTO Company (name, password, email) VALUES ('Captech', 'password', '423@gmail.com');
 
-INSERT INTO Job (title, industry, pay, company) VALUES ('Software Engineer I', 'Engineering', 160000, 'Google');
-INSERT INTO Job (title, industry, pay, company) VALUES ('Software Engineer II', 'Engineering', 175000, 'Google');
-INSERT INTO Job (title, industry, pay, company) VALUES ('New Graduate Business Analyst', 'Engineering', 400000, 'Deloitte');
-INSERT INTO Job (title, industry, pay, company) VALUES ('Project Manager I', 'Engineering', 120000, 'Microsoft');
-INSERT INTO Job (title, industry, pay, company) VALUES ('Associate Consultant', 'Consulting', 75000, 'EY');
+INSERT INTO Job (title, industry, pay, company, companyID) VALUES ('Software Engineer I', 'Engineering', 160000, 'Google', 1);
+INSERT INTO Job (title, industry, pay, company, companyID) VALUES ('Software Engineer II', 'Engineering', 175000, 'Google', 1);
+INSERT INTO Job (title, industry, pay, company, companyID) VALUES ('New Graduate Business Analyst', 'Engineering', 400000, 'Deloitte', 2);
+INSERT INTO Job (title, industry, pay, company, companyID) VALUES ('Project Manager I', 'Engineering', 120000, 'Microsoft', 3);
+INSERT INTO Job (title, industry, pay, company, companyID) VALUES ('Associate Consultant', 'Consulting', 75000, 'EY', 4);
 
 INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (1, 'Lauren Cox', 'laurencox@capitalone.com', '7034567891', "password");
 INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (2, 'Morgan Quencia', 'morganquencia@bloomberg.com', '5713466738', "password");
