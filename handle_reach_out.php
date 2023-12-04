@@ -3,8 +3,8 @@ session_start();
 header('Content-Type: application/json');
 require("connect-db.php");
 require("createjob-db.php");
-ini_set('display_errors', 0); // Turn off error displaying
-error_reporting(E_ALL); // Log errors
+// ini_set('display_errors', 0); // Turn off error displaying
+// error_reporting(E_ALL); // Log errors
 
 
 // Function to handle 'reach out' action

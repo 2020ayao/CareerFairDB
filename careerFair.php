@@ -5,8 +5,8 @@ session_start();
 require("connect-db.php");
 require("careerFairDB.php");
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 function console_log($output, $with_script_tags = true)
 {

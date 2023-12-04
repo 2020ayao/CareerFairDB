@@ -1,7 +1,7 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 require("connect-db.php");
 
 $email = $password = "";
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
         if ($fetch_applicant) {
             // Applicant login
             $passHash = $fetch_applicant['password'];
-            echo "<h2>" . $passHash . "</h2>";
+            // echo "<h2>" . $passHash . "</h2>";
             if (password_verify($password, $passHash)) {
                 // if (true) {
                 $_SESSION['loggedin'] = true;
@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['loginbtn'])) {
         }
         ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="login.php" method="post">
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" name="email"

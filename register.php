@@ -3,8 +3,8 @@ session_start();
 require("connect-db.php");
 require("register-db.php");
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 // Initialize variables
 $username = $email = $password = $confirm_password = $studentGPA = "";
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="wrapper">
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="register.php" method="post">
             <!-- Existing form fields -->
 
             <div class="form-group">

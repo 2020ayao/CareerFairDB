@@ -3,8 +3,8 @@ session_start();
 require("connect-db.php");
 require("jobpostings-db.php");
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 // Starting the session, to use and
 // store data in session variable

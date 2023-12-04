@@ -3,8 +3,8 @@
 session_start();
 require("connect-db.php");
 require("jobapplicants-db.php");
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 
 // Check if the user is logged in

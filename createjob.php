@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Create Job</h1>
 
         <hr />
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="createjob.php" method="post">
             <div class="form-group">
                 <label>Title</label>
                 <input type="text" name="title"

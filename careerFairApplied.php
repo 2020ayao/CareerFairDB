@@ -3,8 +3,8 @@ session_start();
 require("connect-db.php");
 require("careerFairDB.php"); // Assuming you have a similar file for career fair operations
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 
 
