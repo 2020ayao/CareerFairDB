@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($res) {
             // Redirect to the login page after successful registration
             header("location: login.php");
-            exit;
+            exit();
         } else {
             echo "Something went wrong. Please try again later.";
         }
@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             // Redirect to the login page after successful registration
             header("location: login.php");
-            exit;
+            exit();
         } else {
             echo "Something went wrong. Please try again later.";
         }
@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             // Redirect to the login page after successful registration
             header("location: login.php");
-            exit;
+            exit();
         } else {
             echo "Something went wrong. Please try again later.";
         }

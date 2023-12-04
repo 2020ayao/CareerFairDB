@@ -35,42 +35,42 @@ require("header-db.php");
           </li>
           <?php
           // Conditionally show or hide "Recruiters" based on user type
-          if ($_SESSION['user_type'] === 'applicant' || $_SESSION['user_type'] === 'recruiter' || $_SESSION['user_type'] === 'company') {
+          if ($userType === 'applicant' || $userType === 'recruiter' || $userType === 'company') {
             echo '<li class="nav-item">
                     <a class="nav-link" href="recruiter.php">Recruiters</a>
                   </li>';
           }
 
           // Conditionally show or hide "Career Fairs" based on user type
-          if ($_SESSION['user_type'] === 'applicant') {
+          if ($userType === 'applicant') {
             echo '<li class="nav-item">
                     <a class="nav-link" href="careerFair.php">Career Fairs</a>
                   </li>';
           }
 
           // Conditionally show or hide "Career Fairs Attending" based on user type
-          if ($_SESSION['user_type'] === 'applicant') {
+          if ($userType === 'applicant') {
             echo '<li class="nav-item">
                     <a class="nav-link" href="careerFairApplied.php">CF Attendance</a>
                   </li>';
           }
 
           // Conditionally show or hide "Jobs Applied" based on user type
-          if ($_SESSION['user_type'] === 'applicant') {
+          if ($userType === 'applicant') {
             echo '<li class="nav-item">
                     <a class="nav-link" href="applied.php">Jobs Applied</a>
                   </li>';
           }
 
           // Conditionally show or hide "Applicants" based on user type == Recruiter
-          if ($_SESSION['user_type'] === 'recruiter') {
+          if ($userType === 'recruiter') {
             echo '<li class="nav-item">
                     <a class="nav-link" href="applicants.php">Applicants</a>
                   </li>';
           }
 
 
-          if ($_SESSION['user_type'] === 'company') {
+          if ($userType === 'company') {
             echo '<li class="nav-item">
                     <a class="nav-link" href="createjob.php">Create Job Posting</a>
                   </li>';

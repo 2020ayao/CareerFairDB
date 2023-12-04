@@ -8,12 +8,14 @@ require("applicant-db.php"); // Update this to your actual applicant database fu
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['msg'] = "You have to log in first";
     header('location: login.php');
+    exit();
 }
 
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['user_id']);
     header("location: login.php");
+    exit();
 }
 
 // Fetch the list of applicants

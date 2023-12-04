@@ -14,6 +14,7 @@ require("recruiter-db.php");
 if (!isset($_SESSION['user_id'])) {
   $_SESSION['msg'] = "You have to log in first";
   header('location: login.php');
+  exit();
 }
 
 // Logout button will destroy the session, and
@@ -24,6 +25,7 @@ if (isset($_GET['logout'])) {
   session_destroy();
   unset($_SESSION['user_id']);
   header("location: login.php");
+  exit();
 }
 
 // Assuming you have a user_type in your session variable

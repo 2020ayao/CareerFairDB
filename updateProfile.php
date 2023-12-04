@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         echo "Profile updated successfully.";
         header('location: jobpostings.php');
+        exit();
     } catch (PDOException $e) {
         // Handle exceptions, such as database errors
         echo "Error: " . $e->getMessage();

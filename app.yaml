@@ -6,4 +6,4 @@
 # If your main page is index.php, comment the above entrypoint setting
 
 runtime: php81
-entrypoint: serve register.php
+entrypoint: serve index.php

@@ -17,6 +17,7 @@ ini_set('display_errors', 'On');
 if (!isset($_SESSION['user_id'])) {
   $_SESSION['msg'] = "You have to log in first";
   header('location: login.php');
+  exit();
 }
 
 // Logout button will destroy the session, and
@@ -27,6 +28,7 @@ if (isset($_GET['logout'])) {
   session_destroy();
   unset($_SESSION['user_id']);
   header("location: login.php");
+  exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdrawBtn'])) {
