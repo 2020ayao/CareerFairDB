@@ -1,11 +1,12 @@
 <?php
+session_start();
 require("connect-db.php");
 require("careerFairDB.php"); // Assuming you have a similar file for career fair operations
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-session_start();
+
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['msg'] = "You have to log in first";

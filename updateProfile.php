@@ -1,7 +1,6 @@
 <?php
-require("connect-db.php");
-
 session_start();
+require("connect-db.php");
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type'])) {

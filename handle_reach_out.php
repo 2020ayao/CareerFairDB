@@ -1,7 +1,8 @@
 <?php
+session_start();
 header('Content-Type: application/json');
-
 require("connect-db.php");
+require("createjob-db.php");
 ini_set('display_errors', 0); // Turn off error displaying
 error_reporting(E_ALL); // Log errors
 
@@ -47,7 +48,7 @@ function removeReachesOutEntry($recruiterId, $applicantId)
 }
 
 // Assuming recruiterID is stored in the session
-session_start();
+// session_start();
 $recruiterId = $_SESSION['user_id'] ?? null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $recruiterId) {

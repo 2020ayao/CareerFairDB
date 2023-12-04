@@ -1,13 +1,14 @@
 <?php
+// Starting the session, to use and
+// store data in session variable
+session_start();
 require("connect-db.php");
 require("applied-db.php");
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-// Starting the session, to use and
-// store data in session variable
-session_start();
+
 
 // If the session variable is empty, this 
 // means the user is yet to login

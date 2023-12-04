@@ -20,8 +20,8 @@ INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (1, 'Laur
 INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (2, 'Morgan Quencia', 'morganquencia@bloomberg.com', '5713466738', "password");
 INSERT INTO Recruiter (companyID, name, email, phone, password) VALUES (3, 'Kelly Clarkson', 'kellyclarkson@google.com', '7036567383', "password");
 
-INSERT INTO Career_fair VALUES (1 ,'Engineering', '9/14/2023', 'Newcomb Hall');
-INSERT INTO Career_fair VALUES (2 ,'All Industries', '10/25/2023', 'Newcomb Hall');
+INSERT INTO Career_fair(industry, date, Location) VALUES ('Engineering', '9/14/2023', 'Newcomb Hall');
+INSERT INTO Career_fair(industry, date, Location) VALUES ('All Industries', '10/25/2023', 'Newcomb Hall');
 
 
 INSERT INTO Applies VALUES (4 ,1);

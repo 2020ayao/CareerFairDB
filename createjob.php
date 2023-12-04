@@ -1,10 +1,11 @@
 <?php
+session_start();
 require("connect-db.php");
 require("createjob-db.php");
 
 // Starting the session, to use and
 // store data in the session variable
-session_start();
+
 
 // If the session variable is empty, this 
 // means the user is yet to log in

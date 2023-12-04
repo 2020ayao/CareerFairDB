@@ -1,5 +1,6 @@
 /*--------- APPLICANT -------------
 --  applicant(applicantID, name, contact_email, contact_phone, gpa, school, resume)*/
+
 CREATE TABLE IF NOT EXISTS Applicant (
    applicantID int NOT NULL AUTO_INCREMENT,
    username varchar(30) NOT NULL,
@@ -56,7 +57,7 @@ CREATE TABLE IF NOT EXISTS Recruiter (
 ); 
 
 CREATE TABLE IF NOT EXISTS Career_fair (
-   careerFairID int NOT NULL PRIMARY KEY, 
+   careerFairID int NOT NULL PRIMARY KEY AUTO_INCREMENT, 
    industry varchar(30) NOT NULL,
    date varchar(30) NOT NULL,
    Location varchar(30) NOT NULL

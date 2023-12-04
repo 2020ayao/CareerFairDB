@@ -1,12 +1,11 @@
 <?php
 // Include necessary files and functions
+session_start();
 require("connect-db.php");
 require("jobapplicants-db.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-// Start the session
-session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {

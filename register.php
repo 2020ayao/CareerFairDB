@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // $stmt->bindParam(1, $username, PDO::PARAM_STR);
         // $stmt->bindParam(2, $hashed_password, PDO::PARAM_STR);
         // $stmt->bindParam(3, $email, PDO::PARAM_STR);
-        $res = registerApplicant($username, $email, $password, $studentGPA);
+        $res = registerApplicant($username, $email, $hashed_password, $studentGPA);
 
         if ($res) {
             // Redirect to the login page after successful registration
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(2, $recruiter_name, PDO::PARAM_STR);
         $stmt->bindParam(3, $recruiter_email, PDO::PARAM_STR);
         $stmt->bindParam(4, $recruiter_phone, PDO::PARAM_STR);
-        $stmt->bindParam(5, $recruiter_password, PDO::PARAM_STR);
+        $stmt->bindParam(5, $hashed_password, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             // Redirect to the login page after successful registration
@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $db->prepare("INSERT INTO Company (name, email, password) VALUES (?, ?, ?)");
         $stmt->bindParam(1, $company_name, PDO::PARAM_STR);
         $stmt->bindParam(2, $company_email, PDO::PARAM_STR);
-        $stmt->bindParam(3, $company_password, PDO::PARAM_STR);
+        $stmt->bindParam(3, $hashed_password, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             // Redirect to the login page after successful registration

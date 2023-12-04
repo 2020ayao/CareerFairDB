@@ -1,4 +1,7 @@
 <?php
+// Starting the session, to use and
+// store data in session variable
+session_start();
 require("connect-db.php");
 require("careerFairDB.php");
 
@@ -15,9 +18,7 @@ function console_log($output, $with_script_tags = true)
   echo $js_code;
 }
 
-// Starting the session, to use and
-// store data in session variable
-session_start();
+
 
 // If the session variable is empty, this 
 // means the user is yet to login

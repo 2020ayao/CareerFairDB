@@ -1,8 +1,9 @@
 <?php
+session_start();
 require("connect-db.php");
 require("applicant-db.php"); // Update this to your actual applicant database functions file
 
-session_start();
+
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['msg'] = "You have to log in first";

@@ -1,5 +1,8 @@
 <?php
+session_start();
+require("connect-db.php");
 require("header-db.php");
+
 ?>
 
 <header>
@@ -7,8 +10,8 @@ require("header-db.php");
     <div class="container-fluid">
       <?php
       // Starting the session to access user information
-      // session_start();
       
+
       // Check if the user is logged in
       if (isset($_SESSION['user_id'])) {
         $userId = $_SESSION['user_id'];
@@ -78,7 +81,7 @@ require("header-db.php");
 
           <a href="updateProfile.php" class="btn btn-info ml-3" style="margin-right:5px;">Update Profile</a>
 
-          <a href="logout.php" class="btn btn-danger ml-3">Sign Out</a>
+          <a href="/logout.php" class="btn btn-danger ml-3">Sign Out</a>
         </ul>
       </div>
     </div>
